@@ -1,3 +1,3 @@
 export default {
-  baseUrl: "https://nuxt.craftedup.com/wp-json/wp/v2/"
-};
+  baseUrl: process.env.WORDPRESS_API_URL
+}

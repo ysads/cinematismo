@@ -1,9 +1,12 @@
 <template>
   <div>
     <section class="header">
-      <categories :categories="categories"></categories>
-      <img class="logo" src="~assets/logo.svg">
-
+      <categories :categories="categories" />
+      <app-button @click="sayHello" />
+      <img
+        class="logo"
+        src="~assets/logo.svg"
+      >
       <h2 class="subtitle">
         WordPress as a Progressive Web App
       </h2>
@@ -11,7 +14,11 @@
     <section class="container">
       <div>
         <div class="content">
-          <post-list v-if="posts" :posts="posts" title="Recent Posts"></post-list>
+          <post-list
+            v-if="posts"
+            :posts="posts"
+            title="Recent Posts"
+          />
         </div>
       </div>
     </section>
@@ -21,13 +28,19 @@
 <script>
 
 import { mapGetters } from 'vuex'
-import api from "../api/index";
-import postList from '../components/postList.vue'
-import recentPosts from '../components/recentPosts.vue'
-import categories from '../components/categories.vue'
+import api from "@/api/index";
+import PostList from '@/components/postList.vue'
+import PostRecent from '@/components/recentPosts.vue'
+import Categories from '@/components/categories.vue'
+import AppButton from '@/components/AppButton'
 
 export default {
-  components: { postList, categories, recentPosts },
+  components: {
+    AppButton,
+    PostList,
+    PostRecent,
+    Categories
+  },
   async asyncData({ params }) {
     // We can use async/await ES6 feature
     let { data } = await api.getPosts()
@@ -58,15 +71,17 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'categories'
-    ])
+    ...mapGetters(['categories'])
+  },
+  methods: {
+    sayHello () {
+      console.log('oiee')
+    }
   }
 }
 </script>
 
-<style>
-
+<style lang="scss">
 .header {
   background-color:#1e5799;
   background-image: linear-gradient(to right, #34495F, #3A5674);

@@ -1,18 +1,61 @@
 module.exports = {
   root: true,
-  parser: "babel-eslint",
+
+  parserOptions: {
+    ecmaVersion: 2020,
+    parser: 'babel-eslint',
+  },
+
   env: {
     browser: true,
-    node: true
+    node: true,
   },
-  extends: "standard",
+
+  extends: [
+    '@vue/standard',
+    'plugin:vue/vue3-recommended',
+    'plugin:vue/essential',
+    'standard',
+  ],
+
   // required to lint *.vue files
-  plugins: ["html"],
+  plugins: ['vue'],
+
   // add your custom rules here
   rules: {
-    "space-before-function-paren": 0,
-    semi: 0,
-    quotes: 0
+    'comma-dangle': [
+      'error',
+      'always-multiline',
+    ],
+    'max-len': [
+      'error',
+      {
+        ignorePattern: '@/',
+      },
+    ],
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    semi: [
+      'error',
+      'never',
+    ],
+    'space-before-function-paren': 'error',
+    quotes: [
+      'error',
+      'single',
+      {
+        avoidEscape: true,
+      },
+    ],
+    'vue/attributes-order': 'error',
+    'vue/max-attributes-per-line': [
+      'error',
+      {
+        singleline: 5,
+        multiline: 1,
+      },
+    ],
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
-  globals: {}
-};
+
+  globals: {},
+}
