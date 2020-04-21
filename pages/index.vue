@@ -1,9 +1,12 @@
 <template>
   <div>
     <section class="header">
-      <categories :categories="categories"></categories>
-      <img class="logo" src="~assets/logo.svg">
-
+      <categories :categories="categories" />
+      <app-button @click="sayHello" />
+      <img
+        class="logo"
+        src="~assets/logo.svg"
+      >
       <h2 class="subtitle">
         WordPress as a Progressive Web App
       </h2>
@@ -11,7 +14,11 @@
     <section class="container">
       <div>
         <div class="content">
-          <post-list v-if="posts" :posts="posts" title="Recent Posts"></post-list>
+          <post-list
+            v-if="posts"
+            :posts="posts"
+            title="Recent Posts"
+          />
         </div>
       </div>
     </section>
@@ -21,52 +28,56 @@
 <script>
 
 import { mapGetters } from 'vuex'
-import api from "../api/index";
-import postList from '../components/postList.vue'
-import recentPosts from '../components/recentPosts.vue'
-import categories from '../components/categories.vue'
+import api from '@/api/index'
+import PostList from '@/components/postList.vue'
+import Categories from '@/components/categories.vue'
 
 export default {
-  components: { postList, categories, recentPosts },
-  async asyncData({ params }) {
+  components: {
+    PostList,
+    Categories,
+  },
+  async asyncData ({ params }) {
     // We can use async/await ES6 feature
-    let { data } = await api.getPosts()
+    const { data } = await api.getPosts()
 
     return {
-      posts: data
+      posts: data,
     }
   },
-  head() {
+  data () {
     return {
-      title: `Nuxt WordPress | Home`,
-      meta: [
-        {
-          name: 'description',
-          content: 'This is the meta description of the content.'
-        }
-      ]
+      title: 'default',
     }
   },
-  data() {
-    return {
-      title: 'default'
-    }
+  computed: {
+    ...mapGetters(['categories']),
   },
-  mounted() {
+  mounted () {
     if (this.categories.length === 0) {
       this.$store.dispatch('getCategories')
     }
   },
-  computed: {
-    ...mapGetters([
-      'categories'
-    ])
-  }
+  methods: {
+    sayHello () {
+      console.log('oiee')
+    },
+  },
+  head () {
+    return {
+      title: 'Nuxt WordPress | Home',
+      meta: [
+        {
+          name: 'description',
+          content: 'This is the meta description of the content.',
+        },
+      ],
+    }
+  },
 }
 </script>
 
-<style>
-
+<style lang="scss">
 .header {
   background-color:#1e5799;
   background-image: linear-gradient(to right, #34495F, #3A5674);
@@ -81,7 +92,7 @@ export default {
 }
 
 .content {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -93,7 +104,7 @@ export default {
 }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   /* 1 */
   display: block;
   font-weight: bold;
@@ -119,8 +130,8 @@ export default {
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
+@media only screen
+and (min-device-width : 320px)
 and (max-device-width : 480px) {
 
   .title {

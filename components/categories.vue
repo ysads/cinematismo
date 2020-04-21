@@ -1,24 +1,37 @@
 <template>
   <div class="categories-menu">
     <div>
-       <a href="https://github.com/srhise/nuxt-wordpress-pwa" rel="noopener">github</a>
+      <a href="https://github.com/srhise/nuxt-wordpress-pwa" rel="noopener">
+        github
+      </a>
     </div>
     <div>
-       <nuxt-link to="/">home</nuxt-link>
+      <nuxt-link to="/">
+        home
+      </nuxt-link>
     </div>
-    <div v-for="item in categories">
-      <nuxt-link :to="slugToUrl(item.slug)">{{ item.name }}</nuxt-link>
+    <div v-for="item in categories" :key="item.slug">
+      <nuxt-link :to="slugToUrl(item.slug)">
+        {{ item.name }}
+      </nuxt-link>
     </div>
   </div>
 </template>
 <script>
 export default {
-  props: ['categories'],
+  props: {
+    categories: {
+      type: Array,
+      default () {
+        return []
+      },
+    },
+  },
   methods: {
-    slugToUrl(slug) {
+    slugToUrl (slug) {
       return `/category/${slug}`
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -43,6 +56,5 @@ export default {
       color:#444;
     }
 }
-
 
 </style>

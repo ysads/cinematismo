@@ -1,0 +1,14 @@
+$base: 4px;
+
+@mixin margin($side, $mult) {
+  margin-#{$side}: $mult * $base;
+}
+
+@mixin padding($side, $mult) {
+  padding-#{$side}: $mult * $base;
+}
+
+.no-gutter {
+  padding-left: 0;
+  padding-right: 0;
+}

@@ -1,7 +1,7 @@
-import Vuex from "vuex";
-import * as actions from "./actions";
-import * as getters from "./getters";
-import mutations from "./mutations";
+import Vuex from 'vuex'
+import * as actions from './actions'
+import * as getters from './getters'
+import mutations from './mutations'
 
 const store = () => {
   return new Vuex.Store({
@@ -16,24 +16,24 @@ const store = () => {
         link: null,
         slug: null,
         title: null,
-        content: null
+        content: null,
       },
       posts: null,
       post: {
         title: null,
-        content: null
+        content: null,
       },
       category: {
         id: null,
         name: null,
-        slug: null
+        slug: null,
       },
-      categories: []
+      categories: [],
     },
     actions,
     mutations,
-    getters
-  });
-};
+    getters,
+  })
+}
 
-export default store;
+export default store

@@ -1,9 +1,21 @@
 <template>
   <div>
-    <div class="post" v-for="item in posts">
-        <h3><nuxt-link :to="slugToUrl(item.slug)">{{ item.title }}</nuxt-link></h3>
-        <div v-html="item.excerpt"></div>
-        <strong class="more"><nuxt-link :to="slugToUrl(item.slug)">read more</nuxt-link></strong>
+    <div
+      v-for="item in posts"
+      :key="item.slug"
+      class="post"
+    >
+      <h3>
+        <nuxt-link :to="slugToUrl(item.slug)">
+          {{ item.title }}
+        </nuxt-link>
+      </h3>
+      <div v-html="item.excerpt" />
+      <strong class="more">
+        <nuxt-link :to="slugToUrl(item.slug)">
+          read more
+        </nuxt-link>
+      </strong>
     </div>
   </div>
 </template>
@@ -11,12 +23,23 @@
 <script>
 
 export default {
-  props: ['posts', 'title'],
+  props: {
+    posts: {
+      type: Array,
+      default () {
+        return []
+      },
+    },
+    title: {
+      type: String,
+      default: '',
+    },
+  },
   methods: {
-    slugToUrl(slug) {
+    slugToUrl (slug) {
       return `/${slug}`
-    }
-  }
+    },
+  },
 }
 </script>
 

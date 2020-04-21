@@ -1,14 +1,6 @@
-# dependencies
-node_modules
-
-# logs
-npm-debug.log
-
-# Nuxt build
+.env
 .nuxt
-
-# Nuxt generate
+node_modules
+npm-debug.log
 dist
-
-# crap
-.DS_Store
+static/*.js

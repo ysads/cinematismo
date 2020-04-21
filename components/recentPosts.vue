@@ -4,8 +4,10 @@
       Recent Posts
     </h3>
     <ul>
-      <li v-for="item in posts">
-        <nuxt-link :to="slugToUrl(item.slug)">{{ item.title }}</nuxt-link>
+      <li v-for="item in posts" :key="item.slug">
+        <nuxt-link :to="slugToUrl(item.slug)">
+          {{ item.title }}
+        </nuxt-link>
       </li>
     </ul>
   </div>
@@ -14,12 +16,19 @@
 <script>
 
 export default {
-  props: ['posts'],
+  props: {
+    posts: {
+      type: Array,
+      default () {
+        return []
+      },
+    },
+  },
   methods: {
-    slugToUrl(slug) {
+    slugToUrl (slug) {
       return `/${slug}`
-    }
-  }
+    },
+  },
 }
 </script>
 

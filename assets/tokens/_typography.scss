@@ -1,0 +1,34 @@
+%regular {
+  font-weight: 400;
+}
+
+%medium {
+  font-weight: 500;
+}
+
+%bold {
+  font-weight: 700;
+}
+
+%body-text1 {
+  // @extend %open-sans;
+  @extend %regular;
+
+  font-size: 1rem;
+  letter-spacing: -0.2px;
+  line-height: 1.375rem;
+}
+
+%body-text2 {
+  // @extend %open-sans;
+  @extend %regular;
+
+  font-size: 0.875rem;
+  letter-spacing: -0.1px;
+  line-height: 1.25rem;
+}
+
+@mixin truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

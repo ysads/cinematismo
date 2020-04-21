@@ -1,72 +1,78 @@
 <template>
   <div>
     <section class="header">
-      <categories :categories="categories"></categories>
-      <h1 class="page-title">{{ post.title.rendered }}</h1>
+      <categories :categories="categories" />
+      <h1 class="page-title">
+        {{ post.title.rendered }}
+      </h1>
     </section>
     <section class="post-container">
       <div class="post-content">
-        <h3>{{post.title.rendered}}</h3>
-        <div v-html="post.content.rendered"></div>
+        <h3>{{ post.title.rendered }}</h3>
+        <div v-html="post.content.rendered" />
       </div>
       <div class="sidebar">
-        <recent-posts v-if="posts" :posts="posts.data"></recent-posts>
+        <recent-posts v-if="posts" :posts="posts.data" />
       </div>
     </section>
   </div>
 </template>
+
 <script>
 import { mapGetters } from 'vuex'
 import axios from 'axios'
-import config from "../../api/config";
+import config from '../../api/config'
 import recentPosts from '../../components/recentPosts.vue'
 import categories from '../../components/categories.vue'
 
 export default {
   components: { recentPosts, categories },
-  async asyncData({ params }) {
+  async asyncData ({ params }) {
     // We can use async/await ES6 feature
-    let { data } = await axios.get(config.baseUrl + `posts?slug=${params.slug}`)
+    const { data } = await axios.get(
+      config.baseUrl + `posts?slug=${params.slug}`,
+    )
+
     return {
-      post: data[0]
+      post: data[0],
     }
   },
-  head() {
+  data () {
+    return {
+      title: 'default',
+      recent: [{
+        title: 'One',
+        href: '#hash',
+      },
+      {
+        title: 'Two',
+      },
+      {
+        title: 'Three',
+      }],
+    }
+  },
+  computed: {
+    ...mapGetters([
+      'posts',
+      'categories',
+    ]),
+  },
+  mounted () {
+    this.$store.dispatch('getPosts')
+    this.$store.dispatch('getCategories')
+  },
+  head () {
     return {
       title: `Nuxt WordPress | ${this.post.title.rendered}`,
       meta: [
         {
           name: 'description',
-          content: 'This is the meta description of the content.'
-        }
-      ]
+          content: 'This is the meta description of the content.',
+        },
+      ],
     }
   },
-  data() {
-    return {
-      title: 'default',
-      recent: [{
-        title: 'One',
-        href: '#hash'
-      },
-      {
-        title: 'Two'
-      },
-      {
-        title: 'Three'
-      }]
-    }
-  },
-  mounted() {
-    this.$store.dispatch('getPosts')
-    this.$store.dispatch('getCategories')
-  },
-  computed: {
-    ...mapGetters([
-      'posts',
-      'categories'
-    ])
-  }
 }
 </script>
 
@@ -80,7 +86,7 @@ export default {
 }
 
 .page-title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   /* 1 */
   display: block;
   font-weight: bold;
@@ -103,7 +109,7 @@ export default {
 }
 
 .post-container {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -131,7 +137,6 @@ export default {
 }
 
 /* end layout */
-
 
 .links {
   padding-top: 15px;
@@ -162,10 +167,10 @@ p {
 }
 
 /* Smartphones (portrait and landscape) ----------- */
-@media only screen 
-and (min-device-width : 320px) 
+@media only screen
+and (min-device-width : 320px)
 and (max-device-width : 480px) {
-  
+
   .title {
     font-size: 22px;
     line-height:44px;

@@ -1,49 +1,62 @@
+const path = require('path')
+
 module.exports = {
   /*
   ** Extend nuxt using nuxt modules system (Alpha)
   ** Learn more: https://github.com/nuxt/nuxt-modules
   */
-  modules: [{ src: '@nuxtjs/pwa', options: { icon: { sizes: [512, 192, 380 ] } } }],
-  
+  modules: [{
+    src: '@nuxtjs/pwa',
+    options: { icon: { sizes: [512, 192, 380] } },
+  }],
+
   /*
   ** Headers of the page
   */
   head: {
-    title: "starter",
+    title: 'starter',
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "Nuxt.js project" }
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: "#3B8070" },
+  loading: { color: '#3B8070' },
   /*
   ** Customize manifest.json
   */
   manifest: {
-    name: "Nuxt.js",
-    theme_color: "#3B8070"
+    name: 'Nuxt.js',
+    theme_color: '#3B8070',
   },
+
+  /**
+   * Define modules to be loaded upon nuxt build - i.e. when server gets up
+   */
+  buildModules: [
+    '@nuxtjs/style-resources',
+    '@nuxtjs/dotenv',
+  ],
+
+  /**
+   * Allow global tokens - mixins and vars - to be included in every .vue
+   */
+  styleResources: {
+    scss: [
+      './assets/tokens/*.scss',
+    ],
+  },
+
   /*
   ** Build configuration
   */
   build: {
-    /*
-    ** Run ESLINT on save
-    */
-    extend(config, ctx) {
-      if (ctx.isClient) {
-        config.module.rules.push({
-          enforce: "pre",
-          test: /\.(js|vue)$/,
-          loader: "eslint-loader",
-          exclude: /(node_modules)/
-        });
-      }
-    }
-  }
-};
+    extend (config, { isDev, isClient }) {
+      config.resolve.alias['@'] = path.resolve(__dirname)
+    },
+  },
+}
