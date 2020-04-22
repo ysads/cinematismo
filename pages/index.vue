@@ -2,13 +2,12 @@
   <div>
     <section class="header">
       <categories :categories="categories" />
-      <app-button @click="sayHello" />
       <img
         class="logo"
         src="~assets/logo.svg"
       >
       <h2 class="subtitle">
-        WordPress as a Progressive Web App
+        {{ $t(`${langPath}.subtitle`) }}
       </h2>
     </section>
     <section class="container">
@@ -42,6 +41,7 @@ export default {
     const { data } = await api.getPosts()
 
     return {
+      langPath: __langpath,
       posts: data,
     }
   },
@@ -57,11 +57,6 @@ export default {
     if (this.categories.length === 0) {
       this.$store.dispatch('getCategories')
     }
-  },
-  methods: {
-    sayHello () {
-      console.log('oiee')
-    },
   },
   head () {
     return {

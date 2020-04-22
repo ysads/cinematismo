@@ -1,4 +1,5 @@
 const path = require('path')
+import langPathPlugin from './webpack/lang-path-plugin.js'
 
 module.exports = {
   /*
@@ -9,6 +10,10 @@ module.exports = {
     src: '@nuxtjs/pwa',
     options: { icon: { sizes: [512, 192, 380] } },
   }],
+
+  server: {
+    port: 9090,
+  },
 
   /*
   ** Headers of the page
@@ -51,12 +56,18 @@ module.exports = {
     ],
   },
 
+  /**
+   * Custom plugins
+   */
+  plugins: ['~/plugins/i18n.js'],
+
   /*
   ** Build configuration
   */
   build: {
     extend (config, { isDev, isClient }) {
       config.resolve.alias['@'] = path.resolve(__dirname)
+      config.plugins.push(langPathPlugin)
     },
   },
 }

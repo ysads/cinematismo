@@ -19,7 +19,8 @@
     "entities": ">= 2.0.0",
     "hover.css": ">= 2.2.0",
     "nuxt": "latest",
-    "nuxt-modules": "latest"
+    "nuxt-modules": "latest",
+    "vue-i18n": "^8.17.3"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
