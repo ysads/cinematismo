@@ -1,8 +1,23 @@
 <template>
   <div>
+    <the-header />
+    <the-nav-bar />
     <nuxt />
   </div>
 </template>
+
+<script>
+import TheHeader from '~/components/the_header'
+import TheNavBar from '~/components/the_nav_bar'
+
+export default {
+  name: 'default',
+  components: {
+    TheHeader,
+    TheNavBar
+  }
+}
+</script>
 
 <style>
 html

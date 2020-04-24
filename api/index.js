@@ -142,7 +142,10 @@ export default {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
       return request.get('categories').then(response => {
-        const data = [...response.data]
+        const data = response.data.filter((c) => {
+          return c.name.toLowerCase() != 'uncategorized'
+        })
+
         if (response.status === 200 && response.data.length > 0) {
           resolve(data)
         }
