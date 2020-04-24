@@ -1,3 +1,9 @@
+$font-inter: "Inter", Helvetica, Arial, sans-serif;
+
+%inter {
+  font-family: $font-inter;
+}
+
 %regular {
   font-weight: 400;
 }
@@ -26,6 +32,15 @@
   font-size: 0.875rem;
   letter-spacing: -0.1px;
   line-height: 1.25rem;
+}
+
+%subtitle1 {
+  @extend %inter;
+  @extend %bold;
+
+  font-size: 1rem;
+  letter-spacing: 0.2px;
+  line-height: 1.5rem;
 }
 
 @mixin truncate() {

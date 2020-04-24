@@ -1,2 +1,12 @@
-$orange: #ffa800;
-$black: #0e0e0e;
+/* Neutral colors */
+$white: #fff;
+$black: #000;
+
+/* Brand colors ˆ*/
+$orange: #fe320a;
+$orange-50: rgba($orange, 0.5);
+
+/* Support colors */
+$gray-100: #191919;
+$gray-80: rgba($gray-100, 0.8);
+$gray-10: rgba($gray-100, 0.1);
