@@ -1,4 +1,5 @@
 import request from 'axios'
+import transforms from '~/api/transformations'
 
 export default {
   baseUrl: process.env.WORDPRESS_API_URL,
@@ -44,20 +45,9 @@ export default {
       request.defaults.baseURL = this.baseUrl
       request.get(`posts?slug=${slug}`).then(response => {
         const data = [...response.data][0]
+
         if (response.status === 200 && response.data.length > 0) {
-          const filtered = {
-            content: data.content.rendered,
-            author: data.author,
-            date: data.date,
-            date_gmt: data.date_gmt,
-            excerpt: data.excerpt.rendered,
-            featured_media: data.featured_media,
-            guid: data.guid.rendered,
-            link: data.link,
-            slug: data.slug,
-            title: data.title.rendered,
-          }
-          resolve(filtered)
+          resolve(transforms.filteredPost(data))
         } else {
           reject(response)
         }

@@ -1,15 +1,5 @@
 <template>
   <div>
-    <section class="header">
-      <categories :categories="categories" />
-      <img
-        class="logo"
-        src="~assets/logo.svg"
-      >
-      <h2 class="subtitle">
-        {{ $t(`${langPath}.subtitle`) }}
-      </h2>
-    </section>
     <section class="container">
       <div>
         <div class="content">
@@ -29,12 +19,10 @@
 import { mapGetters } from 'vuex'
 import api from '@/api/index'
 import PostList from '@/components/postList.vue'
-import Categories from '@/components/categories.vue'
 
 export default {
   components: {
     PostList,
-    Categories,
   },
   async asyncData ({ params }) {
     // We can use async/await ES6 feature
