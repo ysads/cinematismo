@@ -143,3 +143,13 @@ table {
 hr {
   margin: 0;
 }
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after
+{
+  box-sizing: border-box;
+  margin: 0;
+}
