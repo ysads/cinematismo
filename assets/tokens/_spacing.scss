@@ -1,4 +1,5 @@
 $base: 4px;
+$navigation-height: 60px;
 
 @mixin margin($side, $mult) {
   margin-#{$side}: $mult * $base;

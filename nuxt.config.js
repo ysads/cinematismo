@@ -2,6 +2,7 @@ const path = require('path')
 import langPathPlugin from './webpack/lang-path-plugin.js'
 
 module.exports = {
+
   /*
   ** Extend nuxt using nuxt modules system (Alpha)
   ** Learn more: https://github.com/nuxt/nuxt-modules
@@ -25,8 +26,11 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-           { rel: 'stylesheet', href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/icon?family=Material+Icons' },
+    ],
   },
   /*
   ** Customize the progress-bar color

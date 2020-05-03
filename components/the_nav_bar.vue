@@ -11,6 +11,14 @@
       <span class="nav__hamburger-bar" />
       <span class="nav__hamburger-bar" />
     </div>
+
+    <nuxt-link to="/">
+      <img
+        class="nav__logo"
+        src="~assets/logo_pb.svg"
+      >
+    </nuxt-link>
+
     <ul
       class="nav__menu"
       :class="{
@@ -27,6 +35,8 @@
         </nuxt-link>
       </li>
     </ul>
+
+    <i class='nav__search material-icons'>search</i>
   </div>
 </template>
 
@@ -66,24 +76,32 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-  padding: $base*2 $base*4;
-  background: $orange;
+  padding: $base * 4;
+  background: $black;
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
+  height: $navigation-height;
 
   @include breakpoint(lg) {
-    padding: 0;
+    @include padding(left, 9);
+    @include padding(right, 9);
+    height: auto;
+  }
+
+  &__logo {
+    width: 130px;
+  }
+
+  &__search {
+    color: $white;
+    font-size: 24px;
   }
 
   &__menu-item {
-    @include padding(left, 6);
-    @include padding(right, 6);
-
     @extend %subtitle1;
 
-    text-transform: uppercase;
     color: $white;
     line-height: 50px;
     transition: all 0.5s ease;
@@ -93,18 +111,17 @@ export default {
     }
   }
 
-  &__menu-item + &__menu-item {
-    border-left: 1px solid rgba($white, 0.2);
-  }
-
   &__menu {
+    @include padding(left, 4);
+    @include padding(right, 4);
+
     border-top: 1px solid $gray-10;
     background: $gray-100;
     display: block;
     height: auto;
     left: 0;
     position: absolute;
-    top: 220px;
+    top: $navigation-height;
     transform: scaleY(0);
     transform-origin: top center;
     transition: 0.4s ease;
@@ -168,11 +185,19 @@ export default {
   }
 
   @include breakpoint(lg) {
-    &__hamburger { display: none; }
+    &__hamburger {
+      display: none;
+    }
+
     &__menu {
       height: 100%;
       overflow: inherit;
       position: static;
+    }
+
+    &__menu-item {
+      @include padding(left, 2);
+      @include padding(right, 2);
     }
   }
 }
