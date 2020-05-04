@@ -1,5 +1,5 @@
 import request from 'axios'
-import transforms from '~/api/transformations'
+import { newPost } from '~/models/post'
 
 export default {
   baseUrl: process.env.WORDPRESS_API_URL,
@@ -43,11 +43,11 @@ export default {
   getPost (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
-      request.get(`posts?slug=${slug}`).then(response => {
+      request.get(`posts?slug=${slug}&_embed`).then(response => {
         const data = [...response.data][0]
 
         if (response.status === 200 && response.data.length > 0) {
-          resolve(transforms.filteredPost(data))
+          resolve(newPost(data))
         } else {
           reject(response)
         }

@@ -1,3 +1,4 @@
+
 $font-inter: "Inter", Helvetica, Arial, sans-serif;
 
 %inter {
@@ -16,8 +17,28 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
+%extrabold {
+  font-weight: 800;
+}
+
+%h1 {
+  @extend %inter;
+  @extend %extrabold;
+
+  font-size: 3.125rem;
+  line-height: 1.05;
+}
+
+%h2 {
+  @extend %inter;
+  @extend %medium;
+
+  font-size: 1.25rem;
+  // line-height: 1.05;
+}
+
 %body-text1 {
-  // @extend %open-sans;
+  @extend %inter;
   @extend %regular;
 
   font-size: 1rem;
@@ -26,7 +47,7 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
 }
 
 %body-text2 {
-  // @extend %open-sans;
+  @extend %inter;
   @extend %regular;
 
   font-size: 0.875rem;
