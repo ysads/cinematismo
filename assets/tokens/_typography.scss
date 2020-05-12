@@ -1,4 +1,3 @@
-
 $font-inter: "Inter", Helvetica, Arial, sans-serif;
 
 %inter {
@@ -25,16 +24,40 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   @extend %inter;
   @extend %extrabold;
 
-  font-size: 3.125rem;
-  line-height: 1.05;
+  font-size: 2.5rem;
+  line-height: 1.25;
+
+  @include breakpoint(md) {
+    font-size: 3.125rem;
+  }
 }
 
 %h2 {
   @extend %inter;
   @extend %medium;
 
-  font-size: 1.25rem;
-  // line-height: 1.05;
+  font-size: 2.5rem;
+  line-height: 1.4;
+
+  @include breakpoint(md) {
+    font-size: 2.25rem;
+  }
+}
+
+%h3 {
+  @extend %inter;
+  @extend %medium;
+
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+%h4 {
+  @extend %inter;
+  @extend %medium;
+
+  font-size: 1.375rem;
+  line-height: 1.4;
 }
 
 %body-text1 {
@@ -42,8 +65,7 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   @extend %regular;
 
   font-size: 1rem;
-  letter-spacing: -0.2px;
-  line-height: 1.375rem;
+  line-height: 1.5rem;
 }
 
 %body-text2 {
@@ -51,8 +73,7 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   @extend %regular;
 
   font-size: 0.875rem;
-  letter-spacing: -0.1px;
-  line-height: 1.25rem;
+  line-height: 1.5rem;
 }
 
 %subtitle1 {
@@ -60,7 +81,6 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   @extend %bold;
 
   font-size: 0.85rem;
-  letter-spacing: 0.2px;
   line-height: 1.5rem;
 }
 

@@ -84,6 +84,10 @@ video {
   vertical-align: baseline;
 }
 
+img {
+  width: 100%;
+}
+
 article,
 aside,
 details,
@@ -148,7 +152,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after
+*,
+*::before,
+*::after
 {
   box-sizing: border-box;
   margin: 0;
