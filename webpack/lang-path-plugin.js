@@ -33,10 +33,15 @@ export default {
     )
   },
 
+  removePrefix (path, token) {
+    if (!path.includes(token)) return
+
+    return path.substr(path.indexOf(token))
+  },
+
   buildLangPath (absolutePath) {
-    const relativePath = absolutePath.substr(
-      absolutePath.indexOf('pages') || absolutePath.indexOf('components')
-    )
+    const relativePath = this.removePrefix(absolutePath, 'pages') ||
+      this.removePrefix(absolutePath, 'components')
 
     if (relativePath) {
       return relativePath
