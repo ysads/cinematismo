@@ -1,5 +1,14 @@
 import api from '../api/index'
 
+export const getRecentPosts = async ({ commit }, excludingIds = []) => {
+  const response = await api.getPosts({
+    per_page: 3,
+    excluding: excludingIds
+  })
+
+  commit('SET_RECENT_POSTS', response.data)
+}
+
 export const getPage = ({ commit, state }, slug) => {
   return new Promise((resolve, reject) => {
     api.getPage(slug).then(

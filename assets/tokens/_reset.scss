@@ -104,8 +104,10 @@ section {
 
 body {
   @extend %body-text1;
+}
 
-  line-height: 1;
+html {
+  font-size: 13px;
 }
 
 strong {

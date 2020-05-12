@@ -14,10 +14,15 @@
 
     <div class="post__body row">
       <div class="post__content col-md-8">
-        <img :src="featuredImage.source_url" />
+        <img :src="featuredImage.sourceUrl" />
+        <div class="post__caption">{{ post.featuredImage.caption }}</div>
         <div class="post__text" v-html="post.content" />
       </div>
-      <recent-posts class="post__recent-list col-md-4" />
+
+      <recent-posts
+        class="post__recent-list col-md-4"
+        :excluding-ids="[post.id]"
+      />
     </div>
 
     <hr width="100%" />
@@ -102,8 +107,18 @@ export default {
     text-transform: uppercase;
   }
 
+  &__caption {
+    @extend %caption;
+
+    @include margin(top, 1)
+
+    color: $gray-60;
+  }
+
   &__text {
     @extend %body-text1;
+
+    @include margin(top, 4);
   }
 
   &__body {

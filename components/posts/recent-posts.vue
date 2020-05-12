@@ -6,31 +6,47 @@
 
     <post-horizontal
       class="recent-posts__item"
-      v-for="id in [1, 2, 3, 4]"
-      :key="id"
+      v-for="post in recentPosts"
+      :key="post.id"
+      :post="post"
     />
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import PostHorizontal from '~/components/posts/post-horizontal'
 
 export default {
   name: 'RecentPosts',
 
+  props: {
+    excludingIds: {
+      type: Array,
+      default: [],
+    },
+  },
+
   async fetch () {
-    // console.log("no fetche")
-    // console.log(this)
+    await this.getRecentPosts(this.excludingIds)
   },
 
   components: {
     PostHorizontal
   },
 
+  computed: {
+    ...mapState(['recentPosts'])
+  },
+
   data () {
     return {
       langPath: __langpath,
     }
+  },
+
+  methods: {
+    ...mapActions(['getRecentPosts'])
   }
 }
 </script>

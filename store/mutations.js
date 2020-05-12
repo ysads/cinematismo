@@ -14,4 +14,7 @@ export default {
   CATEGORIES: (state, categories) => {
     state.categories = categories
   },
+  SET_RECENT_POSTS: (state, posts) => {
+    state.recentPosts = posts
+  }
 }

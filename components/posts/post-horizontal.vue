@@ -1,7 +1,7 @@
 <template>
   <div class="post-horizontal row">
     <div class="post-horizontal__thumb col-xs-5">
-      <img src="https://via.placeholder.com/150" />
+      <img :src="post.featuredImage.sourceUrl" />
     </div>
 
     <div class="post-horizontal__info col-xs-7">
@@ -10,11 +10,11 @@
       </div>
 
       <div class="post-horizontal__title">
-        Lorem ipsum dolor sit amet consectertum dolor sit amet consectertum
+        {{ post.title }}
       </div>
 
       <div class="post-horizontal__date">
-        12/04/2019 às 20h12
+        {{ post.createdAt }}
       </div>
     </div>
   </div>
@@ -22,7 +22,14 @@
 
 <script>
 export default {
-  name: 'PostHorizontal'
+  name: 'PostHorizontal',
+
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    }
+  },
 }
 </script>
 

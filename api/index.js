@@ -60,23 +60,22 @@ export default {
    * @param  string slug Post slug (e.g. 'hello-world')
    * @return Promise Filtered response
    */
-  getPosts () {
-    console.log('Request to posts')
+  getPosts (params = {}) {
     return new Promise((resolve, reject) => {
+      const requestParams = {
+        ...params,
+        '_embed': true
+      }
+
       request.defaults.baseURL = this.baseUrl
-      request.get('posts?_embed').then(response => {
+      request.get('posts?', { params: requestParams }).then(response => {
         const data = [...response.data]
+
         if (response.status === 200 && response.data.length > 0) {
           const filtered = {
             total: response.headers['x-wp-total'],
             totalPages: response.headers['x-wp-totalpages'],
-            data: data.map(item => ({
-              id: item.id,
-              title: item.title.rendered,
-              content: item.content.rendered,
-              excerpt: item.excerpt.rendered,
-              slug: item.slug,
-            })),
+            data: data.map(post => newPost(post)),
           }
           resolve(filtered)
         } else {

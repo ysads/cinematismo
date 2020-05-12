@@ -68,12 +68,13 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   line-height: 1.5rem;
 }
 
-%body-text2 {
+%caption {
   @extend %inter;
   @extend %regular;
 
   font-size: 0.875rem;
   line-height: 1.5rem;
+  text-transform: uppercase;
 }
 
 %subtitle1 {
