@@ -1,30 +1,28 @@
 <template>
   <div class="post">
-    <div class="tag">
-      {{ post.category }}
-    </div>
-    <div class="post__title">
-      {{ post.title }}
+    <div class="tag">{{ post.category }}</div>
+    <div class="post__title">{{ post.title }}</div>
+    <div class="post__lead">{{ post.lead }}</div>
+
+    <div class="post__author">
+      {{
+        $t(`${langPath}.author`, { author: post.author.name, date: post.createdAt })
+      }}
     </div>
 
-    <div class="post__lead">
-      {{ post.lead }}
-    </div>
+    <hr width="100%" />
 
-    <hr width="75%" />
-
-    <div class="post__body">
-      <div class="post__content">
-        <div class="post__image">
-          <img :src="featuredImage.source_url" />
-        </div>
-        <div v-html="post.content" />
+    <div class="post__body row">
+      <div class="post__content col-md-8">
+        <img :src="featuredImage.source_url" />
+        <div class="post__text" v-html="post.content" />
       </div>
-
-      <aside class="post__related">
-        Posts recentes
-      </aside>
+      <recent-posts class="post__recent-list col-md-4" />
     </div>
+
+    <hr width="100%" />
+
+    <related-posts class="post__related" />
   </div>
 </template>
 
@@ -32,32 +30,38 @@
 import { mapGetters } from 'vuex'
 import axios from 'axios'
 import api from '~/api'
+import RecentPosts from '~/components/posts/recent-posts'
+import RelatedPosts from '~/components/posts/related-posts'
 
 export default {
+  components: {
+    RecentPosts,
+    RelatedPosts
+  },
+
   async asyncData ({ params, store }) {
-    // We can use async/await ES6 feature
-    // const { data } = await axios.get(
-    //   config.baseUrl + `posts?slug=${params.slug}`,
-    // )
     const post = await api.getPost(params.slug)
+
+    console.log(post)
 
     return {
       post: post,
     }
   },
+
   data () {
     return {
       post: null,
+      langPath: __langpath,
     }
   },
+
   computed: {
     featuredImage () {
       return this.post.featuredImage
     }
-    // ...mapGetters([
-    //   'post',
-    // ]),
   },
+
   head () {
     return {
       title: this.post.title,
@@ -74,8 +78,8 @@ export default {
 
 <style lang="scss" scoped>
 .post {
-  margin: 0 auto;
-  max-width: $max-width;
+  @include padding(left, 6);
+  @include padding(right, 6);
 
   &__title {
     @extend %h1;
@@ -83,26 +87,41 @@ export default {
   }
 
   &__lead {
-    @extend %h2;
+    @extend %h4;
     @include margin(top, 5);
   }
 
+  &__author {
+    @extend %body-text1;
+    @extend %medium;
+
+    @include margin(top, 5);
+    @include margin(bottom, 5);
+
+    color: $gray-60;
+    text-transform: uppercase;
+  }
+
+  &__text {
+    @extend %body-text1;
+  }
+
   &__body {
-    display: flex;
+    @include margin(top, 5);
   }
 
   &__content {
     @extend %body-text1;
-    width: 60%;
   }
 
-  &__related {
-    width: 40%;
+  &__recent-list {
+    @include breakpoint(md) {
+      @include padding(left, 6);
+    }
   }
 
-  &__image {
+  &__related-list {
     @include margin(top, 5);
-    width: 100%;
   }
 }
 </style>

@@ -1,4 +1,5 @@
 import { decodeHTML } from 'entities'
+import moment from '~/support/moment'
 
 export const newPost = (data) => {
   return {
@@ -13,8 +14,15 @@ export const newPost = (data) => {
     },
 
     get featuredImage () {
-      console.log(this['wp:featuredmedia'])
       return this['_embedded']['wp:featuredmedia'][0]
     },
+
+    get author () {
+      return this['_embedded']['author'][0]
+    },
+
+    get createdAt () {
+      return moment(this.date).format('DD MMM YYYY, HH:mm')
+    }
   }
 }
