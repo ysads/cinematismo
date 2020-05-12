@@ -2,7 +2,7 @@ import request from 'axios'
 import { newPost } from '~/models/post'
 
 export default {
-  baseUrl: process.env.WORDPRESS_API_URL,
+  baseUrl: `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2/`,
 
   /**
    * Return a single page
