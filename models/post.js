@@ -1,4 +1,5 @@
 import { decodeHTML } from 'entities'
+import { newImage } from '~/models/image'
 import moment from '~/support/moment'
 
 export const newPost = (data) => {
@@ -14,7 +15,7 @@ export const newPost = (data) => {
     },
 
     get featuredImage () {
-      return this['_embedded']['wp:featuredmedia'][0]
+      return newImage(this['_embedded']['wp:featuredmedia'][0])
     },
 
     get author () {
