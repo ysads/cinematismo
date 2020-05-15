@@ -1,5 +1,6 @@
 import request from 'axios'
 import { newPost } from '~/models/post'
+import { newCategory } from '~/models/category'
 
 export default {
   baseUrl: `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2/`,
@@ -130,13 +131,13 @@ export default {
   getCategories (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
-      return request.get('categories').then(response => {
+      request.get('categories').then(response => {
         const data = response.data.filter((c) => {
           return c.name.toLowerCase() != 'uncategorized'
         })
 
         if (response.status === 200 && response.data.length > 0) {
-          resolve(data)
+          resolve(data.map(category => newCategory(category)))
         }
       })
     })

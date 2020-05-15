@@ -24,6 +24,10 @@ export const newPost = (data) => {
 
     get createdAt () {
       return moment(this.date).format('DD MMM YYYY, HH:mm')
+    },
+
+    get url () {
+      return `/${this.slug}`;
     }
   }
 }
