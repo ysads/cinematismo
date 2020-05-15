@@ -1,7 +1,12 @@
 $font-inter: "Inter", Helvetica, Arial, sans-serif;
+$font-oswald: "Oswald", "Inter", Helvetica, Arial, sans-serif;
 
 %inter {
   font-family: $font-inter;
+}
+
+%oswald {
+  font-family: $font-oswald;
 }
 
 %regular {
@@ -64,7 +69,7 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   @extend %inter;
   @extend %regular;
 
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.5rem;
 }
 
@@ -78,11 +83,12 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
 }
 
 %subtitle1 {
-  @extend %inter;
-  @extend %bold;
+  @extend %oswald;
+  @extend %medium;
 
-  font-size: 0.85rem;
+  font-size: 1.15rem;
   line-height: 1.5rem;
+  letter-spacing: 0.5px;
 }
 
 @mixin truncate() {
