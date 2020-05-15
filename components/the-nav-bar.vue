@@ -29,8 +29,9 @@
         class="nav__menu-item"
         v-for="category in categories"
         :key="category.slug"
+        @click="toggleMobile"
       >
-        <nuxt-link :to="slugToUrl(category.slug)">
+        <nuxt-link :to="category.url">
           {{ category.name }}
         </nuxt-link>
       </li>
@@ -41,10 +42,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TheNavBar',
+
+  async fetch () {
+    if (this.categories.length) return
+
+    await this.getCategories()
+  },
 
   data () {
     return {
@@ -56,16 +63,8 @@ export default {
     ...mapGetters(['categories'])
   },
 
-  mounted () {
-    if (!this.categories.length) {
-      this.$store.dispatch('getCategories')
-    }
-  },
-
   methods: {
-    slugToUrl (slug) {
-      return `/category/${slug}`
-    },
+    ...mapActions(['getCategories']),
 
     toggleMobile () {
       this.hamburgerOpened = !this.hamburgerOpened
