@@ -3,16 +3,16 @@ import api from '../api/index'
 export const getRecentPosts = async ({ commit }, excludingIds = []) => {
   const response = await api.getPosts({
     per_page: 4,
-    excluding: excludingIds
+    excluding: excludingIds,
   })
 
   commit('SET_RECENT_POSTS', response.data)
 }
 
-export const getRelatedPosts = async ({ commit }, categoryIds) => {
+export const getRelatedPosts = async ({ commit }, tagIds) => {
   const response = await api.getPosts({
     per_page: 4,
-    categories: categoryIds.join(',')
+    tags: tagIds.join(','),
   })
 
   commit('SET_RELATED_POSTS', response.data)

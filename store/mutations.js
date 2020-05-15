@@ -25,5 +25,5 @@ export default {
 
   SET_RELATED_POSTS: (state, posts) => {
     state.relatedPosts = posts
-  }
+  },
 }

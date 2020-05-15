@@ -1,50 +1,83 @@
 <template>
-  <div class="related-posts row">
-    <h4 class="related-posts__title col-xs-12">
+  <div class="related-posts">
+    <h4 class="related-posts__title">
       {{ $t(`${langPath}.title`) }}
     </h4>
 
-    <post-vertical
-      class="related-posts__item col-md-3"
-      v-for="id in [1, 2, 3, 4]"
-      :key="id"
-    />
+    <hr width="25%">
+
+    <div class="related-posts__grid">
+      <post-vertical
+        v-for="post in relatedPosts"
+        :key="post.id"
+        class="related-posts__item"
+        :post="post"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 import PostVertical from '~/components/posts/post-vertical'
 
 export default {
   name: 'RelatedPosts',
 
   components: {
-    PostVertical
+    PostVertical,
+  },
+
+  props: {
+    tagIds: {
+      type: Array,
+      required: true,
+    },
+  },
+
+  async fetch () {
+    await this.getRelatedPosts(this.tagIds)
+  },
+
+  computed: {
+    ...mapState(['relatedPosts']),
   },
 
   data () {
     return {
       langPath: __langpath,
     }
-  }
+  },
+
+  methods: {
+    ...mapActions(['getRelatedPosts']),
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .related-posts {
+  border: 2px solid $gray-60;
+  padding: $base * 8;
+
   &__title {
     @extend %h4;
+
+    @include margin(bottom, 2);
   }
 
-  &__item {
-    @include breakpoint(md) {
-      @include margin(top, 2);
-    }
-  }
+  &__grid {
+    @include margin(top, 5);
 
-  &__item + &__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px 20px;
+    grid-template-areas: ". ." ". .";
+
     @include breakpoint(md) {
-      @include padding(left, 2);
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
     }
   }
 }
