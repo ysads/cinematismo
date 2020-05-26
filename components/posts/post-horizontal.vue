@@ -1,14 +1,10 @@
 <template>
-  <div class="post-horizontal row">
-    <div class="post-horizontal__thumb col-xs-5">
-      <img :src="post.featuredImage.sourceUrl" />
+  <div class="post-horizontal">
+    <div class="post-horizontal__thumb">
+      <img :src="post.featuredImage.sourceUrl">
     </div>
 
-    <div class="post-horizontal__info col-xs-7">
-      <div class="post-horizontal__tag">
-        Filmes
-      </div>
-
+    <div class="post-horizontal__info">
       <div class="post-horizontal__title">
         {{ post.title }}
       </div>
@@ -21,6 +17,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'PostHorizontal',
 
@@ -28,7 +26,7 @@ export default {
     post: {
       type: Object,
       required: true,
-    }
+    },
   },
 }
 </script>
@@ -36,16 +34,10 @@ export default {
 <style lang="scss" scoped>
 .post-horizontal {
   display: flex;
+  flex-flow: column;
 
-  &__info {
-    @include padding(left, 4);
-  }
-
-  &__tag {
-    @extend %medium;
-
-    color: $orange;
-    text-transform: uppercase;
+  &__thumb {
+    width: 100%;
   }
 
   &__title {

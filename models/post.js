@@ -15,11 +15,11 @@ export const newPost = (data) => {
     },
 
     get featuredImage () {
-      return newImage(this['_embedded']['wp:featuredmedia'][0])
+      return newImage(this._embedded['wp:featuredmedia'][0])
     },
 
     get author () {
-      return this['_embedded']['author'][0]
+      return this._embedded.author[0]
     },
 
     get createdAt () {
@@ -27,7 +27,7 @@ export const newPost = (data) => {
     },
 
     get url () {
-      return `/${this.slug}`;
-    }
+      return `/${this.slug}`
+    },
   }
 }

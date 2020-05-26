@@ -4,10 +4,10 @@
       {{ $t(`${langPath}.title`) }}
     </h4>
 
-    <post-horizontal
-      class="recent-posts__item"
+    <thumb-horizontal
       v-for="post in recentPosts"
       :key="post.id"
+      class="recent-posts__item"
       :post="post"
     />
   </div>
@@ -15,10 +15,14 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PostHorizontal from '~/components/posts/post-horizontal'
+import ThumbHorizontal from '~/components/thumbs/thumb-horizontal'
 
 export default {
   name: 'RecentPosts',
+
+  components: {
+    ThumbHorizontal,
+  },
 
   props: {
     excludingIds: {
@@ -31,12 +35,8 @@ export default {
     await this.getRecentPosts(this.excludingIds)
   },
 
-  components: {
-    PostHorizontal
-  },
-
   computed: {
-    ...mapState(['recentPosts'])
+    ...mapState(['recentPosts']),
   },
 
   data () {
@@ -46,8 +46,8 @@ export default {
   },
 
   methods: {
-    ...mapActions(['getRecentPosts'])
-  }
+    ...mapActions(['getRecentPosts']),
+  },
 }
 </script>
 
@@ -58,7 +58,12 @@ export default {
   }
 
   &__item {
-    @include margin(top, 5);
+    @include padding(top, 5);
+    @include padding(bottom, 5);
+  }
+
+  &__item + &__item {
+    border-top: 1px solid $gray-20;
   }
 }
 </style>

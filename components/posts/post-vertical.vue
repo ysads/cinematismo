@@ -1,42 +1,53 @@
 <template>
-  <div class="post-vertical row">
-    <div class="post-vertical__thumb">
-      <img src="https://via.placeholder.com/350" />
-    </div>
+  <div class="post-vertical">
+    <nuxt-link :to="post.slug">
+      <img
+        class="post-vertical__thumb"
+        :src="post.featuredImage.sourceUrl"
+      >
 
-    <div class="post-vertical__info">
-      <div class="post-vertical__tag">
-        Filmes
-      </div>
+      <div class="post-vertical__info">
+        <div class="post-vertical__title">
+          {{ post.title }}
+        </div>
 
-      <div class="post-vertical__title">
-        Lorem ipsum dolor sit amet consectertum dolor sit amet consectertum dolor sit
+        <div class="post-vertical__date">
+          {{ post.createdAt }}
+        </div>
       </div>
-
-      <div class="post-vertical__date">
-        12/04/2019 às 20h12
-      </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'PostVertical'
+  name: 'PostVertical',
+
+  props: {
+    post: {
+      type: Object,
+      required: true,
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .post-vertical {
-  &__tag {
-    @extend %medium;
-
-    color: $orange;
-    text-transform: uppercase;
+  &__thumb {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
   }
 
   &__title {
     @include margin(top, 2);
+
+    transition: text-decoration 0.5s ease;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__date {

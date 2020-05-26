@@ -26,9 +26,9 @@
       }"
     >
       <li
-        class="nav__menu-item"
         v-for="category in categories"
         :key="category.slug"
+        class="nav__menu-item"
         @click="toggleMobile"
       >
         <nuxt-link :to="category.url">
@@ -37,7 +37,7 @@
       </li>
     </ul>
 
-    <i class='nav__search material-icons'>search</i>
+    <i class="nav__search material-icons">search</i>
   </div>
 </template>
 
@@ -55,12 +55,12 @@ export default {
 
   data () {
     return {
-      hamburgerOpened: false
+      hamburgerOpened: false,
     }
   },
 
   computed: {
-    ...mapGetters(['categories'])
+    ...mapGetters(['categories']),
   },
 
   methods: {
@@ -103,10 +103,13 @@ export default {
 
     color: $white;
     line-height: 50px;
-    transition: all 0.5s ease;
+    // transition: all 0.5s ease;
 
     &:hover {
-      background: rgba($white, 0.2);
+      background-image: linear-gradient(to right, #fe320a 0%, #fe320a 100%);
+      background-size: 100% 0.3em;
+      background-position: bottom;
+      background-repeat: no-repeat;
     }
   }
 
@@ -145,7 +148,6 @@ export default {
       background: none;
     }
   }
-
 
   &__hamburger {
     $hamburgerclass: &;

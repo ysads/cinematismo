@@ -8,11 +8,13 @@
     </section>
     <section class="category-container">
       <div class="category-content">
-        <post-list v-if="posts" :posts="category_posts" :title="slug" />
+        <post-list
+          v-if="posts"
+          :posts="category_posts"
+          :title="slug"
+        />
       </div>
-      <div class="sidebar">
-
-      </div>
+      <div class="sidebar" />
     </section>
   </div>
 </template>

@@ -65,7 +65,7 @@ export default {
     return new Promise((resolve, reject) => {
       const requestParams = {
         ...params,
-        '_embed': true
+        _embed: true,
       }
 
       request.defaults.baseURL = this.baseUrl

@@ -4,6 +4,6 @@ export const newCategory = (data) => {
 
     get url () {
       return `/categoria/${this.slug}`
-    }
+    },
   }
 }

@@ -8,6 +8,6 @@ export const newImage = (data) => {
 
     get caption () {
       return sanitize(data.caption.rendered)
-    }
+    },
   }
 }
