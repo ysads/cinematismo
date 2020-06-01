@@ -10,9 +10,11 @@
     "dev": "nuxt",
     "generate": "nuxt generate",
     "precommit": "npm run lint",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "@nuxtjs/google-adsense": "^1.1.3",
     "@nuxtjs/pwa": "latest",
     "axios": ">= 0.18.1",
     "entities": ">= 2.0.0",
