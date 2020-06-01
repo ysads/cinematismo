@@ -7,17 +7,19 @@ module.exports = {
   ** Extend nuxt using nuxt modules system (Alpha)
   ** Learn more: https://github.com/nuxt/nuxt-modules
   */
-  modules: [{
-    src: '@nuxtjs/pwa',
-    options: { icon: { sizes: [512, 192, 380] } },
-  }],
+  modules: [
+    {
+      src: '@nuxtjs/pwa',
+      options: { icon: { sizes: [512, 192, 380] } },
+    },
+    ['@nuxtjs/google-adsense', {
+      id: process.env.ADSENSE_ID,
+      tag: 'ads-by-google'
+    }],
+  ],
 
   generate: {
     dir: "public"
-  },
-
-  server: {
-    port: 9090,
   },
 
   /*
@@ -76,7 +78,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
-    extend (config, { isDev, isClient }) {
+    extend (config, context) {
       config.resolve.alias['@'] = path.resolve(__dirname)
       config.plugins.push(langPathPlugin)
     },
