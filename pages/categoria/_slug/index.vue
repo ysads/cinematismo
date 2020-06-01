@@ -8,11 +8,13 @@
     </section>
     <section class="category-container">
       <div class="category-content">
-        <post-list v-if="posts" :posts="category_posts" :title="slug" />
+        <post-list
+          v-if="posts"
+          :posts="category_posts"
+          :title="slug"
+        />
       </div>
-      <div class="sidebar">
-        <recent-posts v-if="posts" :posts="posts.data" />
-      </div>
+      <div class="sidebar" />
     </section>
   </div>
 </template>
@@ -20,11 +22,10 @@
 import { mapGetters } from 'vuex'
 import api from '../../../api/index'
 import postList from '../../../components/postList.vue'
-import recentPosts from '../../../components/recentPosts.vue'
 import categories from '../../../components/categories.vue'
 
 export default {
-  components: { postList, categories, recentPosts },
+  components: { postList, categories },
   async asyncData ({ params }) {
     // We can use async/await ES6 feature
     const { posts } = await api.getCategory(params.slug)

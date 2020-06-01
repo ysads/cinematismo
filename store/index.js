@@ -18,6 +18,8 @@ const store = () => {
         title: null,
         content: null,
       },
+      recentPosts: [],
+      relatedPosts: [],
       posts: null,
       post: {
         title: null,

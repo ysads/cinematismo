@@ -1,7 +1,10 @@
 <template>
   <div class="categories-menu">
     <div>
-      <a href="https://github.com/srhise/nuxt-wordpress-pwa" rel="noopener">
+      <a
+        href="https://github.com/srhise/nuxt-wordpress-pwa"
+        rel="noopener"
+      >
         github
       </a>
     </div>
@@ -10,7 +13,10 @@
         home
       </nuxt-link>
     </div>
-    <div v-for="item in categories" :key="item.slug">
+    <div
+      v-for="item in categories"
+      :key="item.slug"
+    >
       <nuxt-link :to="slugToUrl(item.slug)">
         {{ item.name }}
       </nuxt-link>

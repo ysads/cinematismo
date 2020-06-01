@@ -1,8 +1,9 @@
 import request from 'axios'
-import transforms from '~/api/transformations'
+import { newPost } from '~/models/post'
+import { newCategory } from '~/models/category'
 
 export default {
-  baseUrl: process.env.WORDPRESS_API_URL,
+  baseUrl: `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2/`,
 
   /**
    * Return a single page
@@ -43,11 +44,11 @@ export default {
   getPost (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
-      request.get(`posts?slug=${slug}`).then(response => {
+      request.get(`posts?slug=${slug}&_embed`).then(response => {
         const data = [...response.data][0]
 
         if (response.status === 200 && response.data.length > 0) {
-          resolve(transforms.filteredPost(data))
+          resolve(newPost(data))
         } else {
           reject(response)
         }
@@ -60,23 +61,22 @@ export default {
    * @param  string slug Post slug (e.g. 'hello-world')
    * @return Promise Filtered response
    */
-  getPosts () {
-    console.log('Request to posts')
+  getPosts (params = {}) {
     return new Promise((resolve, reject) => {
+      const requestParams = {
+        ...params,
+        _embed: true,
+      }
+
       request.defaults.baseURL = this.baseUrl
-      request.get('posts?_embed').then(response => {
+      request.get('posts?', { params: requestParams }).then(response => {
         const data = [...response.data]
+
         if (response.status === 200 && response.data.length > 0) {
           const filtered = {
             total: response.headers['x-wp-total'],
             totalPages: response.headers['x-wp-totalpages'],
-            data: data.map(item => ({
-              id: item.id,
-              title: item.title.rendered,
-              content: item.content.rendered,
-              excerpt: item.excerpt.rendered,
-              slug: item.slug,
-            })),
+            data: data.map(post => newPost(post)),
           }
           resolve(filtered)
         } else {
@@ -131,13 +131,13 @@ export default {
   getCategories (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
-      return request.get('categories').then(response => {
+      request.get('categories').then(response => {
         const data = response.data.filter((c) => {
           return c.name.toLowerCase() != 'uncategorized'
         })
 
         if (response.status === 200 && response.data.length > 0) {
-          resolve(data)
+          resolve(data.map(category => newCategory(category)))
         }
       })
     })

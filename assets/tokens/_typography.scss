@@ -1,7 +1,12 @@
 $font-inter: "Inter", Helvetica, Arial, sans-serif;
+$font-oswald: "Oswald", "Inter", Helvetica, Arial, sans-serif;
 
 %inter {
   font-family: $font-inter;
+}
+
+%oswald {
+  font-family: $font-oswald;
 }
 
 %regular {
@@ -16,31 +21,74 @@ $font-inter: "Inter", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 
-%body-text1 {
-  // @extend %open-sans;
-  @extend %regular;
-
-  font-size: 1rem;
-  letter-spacing: -0.2px;
-  line-height: 1.375rem;
+%extrabold {
+  font-weight: 800;
 }
 
-%body-text2 {
-  // @extend %open-sans;
+%h1 {
+  @extend %inter;
+  @extend %extrabold;
+
+  font-size: 2.5rem;
+  line-height: 1.25;
+
+  @include breakpoint(md) {
+    font-size: 3.125rem;
+  }
+}
+
+%h2 {
+  @extend %inter;
+  @extend %medium;
+
+  font-size: 2.5rem;
+  line-height: 1.4;
+
+  @include breakpoint(md) {
+    font-size: 2.25rem;
+  }
+}
+
+%h3 {
+  @extend %inter;
+  @extend %medium;
+
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+%h4 {
+  @extend %inter;
+  @extend %medium;
+
+  font-size: 1.375rem;
+  line-height: 1.4;
+}
+
+%body-text1 {
+  @extend %inter;
+  @extend %regular;
+
+  font-size: 1.1rem;
+  line-height: 1.5rem;
+}
+
+%caption {
+  @extend %inter;
   @extend %regular;
 
   font-size: 0.875rem;
-  letter-spacing: -0.1px;
-  line-height: 1.25rem;
+  line-height: 1.5rem;
+  text-transform: uppercase;
 }
 
 %subtitle1 {
-  @extend %inter;
-  @extend %bold;
+  @extend %oswald;
+  @extend %medium;
 
-  font-size: 0.85rem;
-  letter-spacing: 0.2px;
+  font-size: 1.15rem;
   line-height: 1.5rem;
+  letter-spacing: 0.5px;
 }
 
 @mixin truncate() {

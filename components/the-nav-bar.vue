@@ -26,46 +26,45 @@
       }"
     >
       <li
-        class="nav__menu-item"
         v-for="category in categories"
         :key="category.slug"
+        class="nav__menu-item"
+        @click="toggleMobile"
       >
-        <nuxt-link :to="slugToUrl(category.slug)">
+        <nuxt-link :to="category.url">
           {{ category.name }}
         </nuxt-link>
       </li>
     </ul>
 
-    <i class='nav__search material-icons'>search</i>
+    <i class="nav__search material-icons">search</i>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'TheNavBar',
 
+  async fetch () {
+    if (this.categories.length) return
+
+    await this.getCategories()
+  },
+
   data () {
     return {
-      hamburgerOpened: false
+      hamburgerOpened: false,
     }
   },
 
   computed: {
-    ...mapGetters(['categories'])
-  },
-
-  mounted () {
-    if (!this.categories.length) {
-      this.$store.dispatch('getCategories')
-    }
+    ...mapGetters(['categories']),
   },
 
   methods: {
-    slugToUrl (slug) {
-      return `/category/${slug}`
-    },
+    ...mapActions(['getCategories']),
 
     toggleMobile () {
       this.hamburgerOpened = !this.hamburgerOpened
@@ -104,10 +103,13 @@ export default {
 
     color: $white;
     line-height: 50px;
-    transition: all 0.5s ease;
+    // transition: all 0.5s ease;
 
     &:hover {
-      background: rgba($white, 0.2);
+      background-image: linear-gradient(to right, #fe320a 0%, #fe320a 100%);
+      background-size: 100% 0.3em;
+      background-position: bottom;
+      background-repeat: no-repeat;
     }
   }
 
@@ -146,7 +148,6 @@ export default {
       background: none;
     }
   }
-
 
   &__hamburger {
     $hamburgerclass: &;

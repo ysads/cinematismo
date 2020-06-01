@@ -84,6 +84,14 @@ video {
   vertical-align: baseline;
 }
 
+img {
+  width: 100%;
+}
+
+iframe {
+  width: 100%;
+}
+
 article,
 aside,
 details,
@@ -100,8 +108,10 @@ section {
 
 body {
   @extend %body-text1;
+}
 
-  line-height: 1;
+html {
+  font-size: 13px;
 }
 
 strong {
@@ -148,7 +158,9 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after
+*,
+*::before,
+*::after
 {
   box-sizing: border-box;
   margin: 0;
