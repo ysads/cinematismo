@@ -1,17 +1,17 @@
 <template>
-  <div class="post-vertical">
+  <div class="thumb-vertical">
     <nuxt-link :to="post.slug">
       <img
-        class="post-vertical__thumb"
+        class="thumb-vertical__thumb"
         :src="post.featuredImage.sourceUrl"
       >
 
-      <div class="post-vertical__info">
-        <div class="post-vertical__title">
+      <div class="thumb-vertical__info">
+        <div class="thumb-vertical__title">
           {{ post.title }}
         </div>
 
-        <div class="post-vertical__date">
+        <div class="thumb-vertical__date">
           {{ post.createdAt }}
         </div>
       </div>
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'PostVertical',
+  name: 'ThumbVertical',
 
   props: {
     post: {
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.post-vertical {
+.thumb-vertical {
   &__thumb {
     width: 100%;
     height: 200px;

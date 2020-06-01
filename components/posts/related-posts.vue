@@ -7,7 +7,7 @@
     <hr width="25%">
 
     <div class="related-posts__grid">
-      <post-vertical
+      <thumb-vertical
         v-for="post in relatedPosts"
         :key="post.id"
         class="related-posts__item"
@@ -19,13 +19,13 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import PostVertical from '~/components/posts/post-vertical'
+import ThumbVertical from '~/components/thumbs/thumb-vertical'
 
 export default {
   name: 'RelatedPosts',
 
   components: {
-    PostVertical,
+    ThumbVertical,
   },
 
   props: {

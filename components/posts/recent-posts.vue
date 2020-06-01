@@ -10,11 +10,17 @@
       class="recent-posts__item"
       :post="post"
     />
+
+    <ads-by-google
+      ad-slot="1960897203"
+      ad-format="auto"
+    />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import { postAds } from '~/constants/ads'
 import ThumbHorizontal from '~/components/thumbs/thumb-horizontal'
 
 export default {

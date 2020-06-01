@@ -10,10 +10,6 @@ export const newPost = (data) => {
     guid: data.guid.rendered,
     title: decodeHTML(data.title.rendered),
 
-    featuredImageSized: function (size) {
-      console.log(this.featuredImage.media_details.sizes[size])
-    },
-
     get featuredImage () {
       return newImage(this._embedded['wp:featuredmedia'][0])
     },

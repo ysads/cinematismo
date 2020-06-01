@@ -25,14 +25,15 @@
     <hr width="100%">
 
     <div class="post__body row">
-      <div class="post__content col-md-8 col-xs-12">
+      <div class="col-md-8 col-xs-12">
         <img :src="featuredImage.sourceUrl">
         <div class="post__caption">
           {{ post.featuredImage.caption }}
         </div>
-        <div
-          class="post__text"
-          v-html="post.content"
+
+        <post-content
+          class="post__content"
+          :post="post"
         />
       </div>
 
@@ -55,9 +56,11 @@ import axios from 'axios'
 import api from '~/api'
 import RecentPosts from '~/components/posts/recent-posts'
 import RelatedPosts from '~/components/posts/related-posts'
+import PostContent from '~/components/posts/post-content'
 
 export default {
   components: {
+    PostContent,
     RecentPosts,
     RelatedPosts,
   },
@@ -108,6 +111,7 @@ export default {
   @include padding(left, 6);
   @include padding(right, 6);
   @include margin(top, 10);
+  @include margin(bottom, 10);
 
   &__category {
     @extend %subtitle1;
@@ -149,16 +153,6 @@ export default {
     color: $gray-60;
   }
 
-  &__text {
-    @extend %body-text1;
-
-    @include margin(top, 4);
-
-    p {
-      @include margin(bottom, 2);
-    }
-  }
-
   &__body {
     @include margin(top, 5);
 
@@ -167,7 +161,7 @@ export default {
   }
 
   &__content {
-    @extend %body-text1;
+    @include margin(top, 1);
   }
 
   &__recent-list {
