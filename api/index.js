@@ -3,7 +3,7 @@ import { newPost } from '~/models/post'
 import { newCategory } from '~/models/category'
 
 export default {
-  baseUrl: `${process.env.WORDPRESS_API_URL}/wp-json/wp/v2/`,
+  baseUrl: `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/`,
 
   /**
    * Return a single page

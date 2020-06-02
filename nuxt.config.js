@@ -13,7 +13,7 @@ module.exports = {
       options: { icon: { sizes: [512, 192, 380] } },
     },
     ['@nuxtjs/google-adsense', {
-      id: process.env.ADSENSE_ID,
+      id: process.env.NUXT_ENV_ADSENSE_ID,
       tag: 'ads-by-google'
     }],
   ],
