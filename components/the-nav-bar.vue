@@ -29,6 +29,9 @@
         v-for="category in categories"
         :key="category.slug"
         class="nav__menu-item"
+        :class="{
+          'nav__menu-item--active': isSelected(category.slug)
+        }"
         @click="toggleMobile"
       >
         <nuxt-link :to="category.url">
@@ -69,6 +72,10 @@ export default {
     toggleMobile () {
       this.hamburgerOpened = !this.hamburgerOpened
     },
+
+    isSelected (categorySlug) {
+      return this.$route.params.slug === categorySlug
+    },
   },
 }
 </script>
@@ -103,10 +110,15 @@ export default {
 
     color: $white;
     line-height: 50px;
-    // transition: all 0.5s ease;
 
     &:hover {
-      background-image: linear-gradient(to right, #fe320a 0%, #fe320a 100%);
+      background-image: linear-gradient(to right, $orange 0%, $orange 100%);
+      background-size: 100% 0.3em;
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+    &--active {
+      background-image: linear-gradient(to right, $orange 0%, $orange 100%);
       background-size: 100% 0.3em;
       background-position: bottom;
       background-repeat: no-repeat;
