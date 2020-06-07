@@ -38,22 +38,18 @@ $font-oswald: "Oswald", "Inter", Helvetica, Arial, sans-serif;
 }
 
 %h2 {
-  @extend %inter;
-  @extend %medium;
+  @extend %oswald;
+  @extend %bold;
 
-  font-size: 2.5rem;
+  font-size: 2rem;
   line-height: 1.4;
-
-  @include breakpoint(md) {
-    font-size: 2.25rem;
-  }
 }
 
 %h3 {
-  @extend %inter;
-  @extend %medium;
+  @extend %oswald;
+  @extend %bold;
 
-  font-size: 2rem;
+  font-size: 1.75rem;
   line-height: 1.4;
 }
 
@@ -63,6 +59,14 @@ $font-oswald: "Oswald", "Inter", Helvetica, Arial, sans-serif;
 
   font-size: 1.375rem;
   line-height: 1.4;
+}
+
+%h6 {
+  @extend %inter;
+  @extend %bold;
+
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
 
 %body-text1 {

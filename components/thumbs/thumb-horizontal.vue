@@ -50,10 +50,12 @@ export default {
   }
 
   &__title {
-    transition: text-decoration 0.5s ease;
+    @extend %h6;
+
+    @include transition(color);
 
     &:hover {
-      text-decoration: underline;
+      color: $gray-60;
     }
   }
 

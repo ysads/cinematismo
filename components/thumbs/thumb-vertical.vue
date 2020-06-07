@@ -41,12 +41,13 @@ export default {
   }
 
   &__title {
-    @include margin(top, 2);
+    @extend %h6;
 
-    transition: text-decoration 0.5s ease;
+    @include margin(top, 2);
+    @include transition(color);
 
     &:hover {
-      text-decoration: underline;
+      color: $gray-60;
     }
   }
 
