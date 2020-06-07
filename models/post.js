@@ -1,12 +1,13 @@
 import { decodeHTML } from 'entities'
 import { newImage } from '~/models/image'
 import moment from '~/support/moment'
+import { sanitize } from '~/support/html-tools'
 
 export const newPost = (data) => {
   return {
     ...data,
     content: data.content.rendered,
-    excerpt: data.excerpt.rendered,
+    excerpt: sanitize(decodeHTML(data.excerpt.rendered)),
     guid: data.guid.rendered,
     title: decodeHTML(data.title.rendered),
 

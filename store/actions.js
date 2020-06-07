@@ -46,9 +46,9 @@ export const getPost = ({ commit, state }, slug) => {
   })
 }
 
-export const getPosts = ({ commit, state }) => {
+export const getPosts = ({ commit, state }, params = {}) => {
   return new Promise((resolve, reject) => {
-    api.getPosts().then(
+    api.getPosts(params).then(
       response => {
         commit('POSTS', response)
         resolve(response)

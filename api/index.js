@@ -5,11 +5,6 @@ import { newCategory } from '~/models/category'
 export default {
   baseUrl: `${process.env.NUXT_ENV_WORDPRESS_API_URL}/wp-json/wp/v2/`,
 
-  /**
-   * Return a single page
-   * @param  string slug Page slug (e.g. 'sample-page')
-   * @return Promise Filtered response
-   */
   getPage (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
@@ -36,11 +31,6 @@ export default {
     })
   },
 
-  /**
-   * Return a single post
-   * @param  string slug Post slug (e.g. 'hello-world')
-   * @return Promise Filtered response
-   */
   getPost (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
@@ -56,11 +46,6 @@ export default {
     })
   },
 
-  /**
-   * Return all posts (paginated)
-   * @param  string slug Post slug (e.g. 'hello-world')
-   * @return Promise Filtered response
-   */
   getPosts (params = {}) {
     return new Promise((resolve, reject) => {
       const requestParams = {
@@ -86,11 +71,6 @@ export default {
     })
   },
 
-  /**
-   * Returns category data and all posts under it (paginated)
-   * @param  string slug Category slug (e.g. 'news')
-   * @return Promise Filtered response
-   */
   getCategory (slug) {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
