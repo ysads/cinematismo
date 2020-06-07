@@ -13,7 +13,7 @@
       {{ post.title }}
     </div>
     <div class="post__lead">
-      {{ post.lead }}
+      {{ post.excerpt }}
     </div>
 
     <div class="post__author">
