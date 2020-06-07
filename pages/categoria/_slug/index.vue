@@ -7,7 +7,7 @@
     <loading v-if="$fetchState.pending" />
     <div v-else>
       <post-grid class="category__grid" :posts="posts.data.slice(0, 6)" />
-      <div>part 2</div>
+      <google-ad class="category__ad" :slot-id="CATEGORY_MID_GRID_AD" />
       <post-grid class="category__grid" :posts="posts.data.slice(6, 13)" />
     </div>
   </div>
@@ -17,11 +17,14 @@
 import { mapActions, mapGetters } from 'vuex'
 import PostGrid from '~/components/post-grid'
 import Loading from '~/components/loading'
+import GoogleAd from '~/components/google-ad'
+import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 
 export default {
   components: {
     PostGrid,
-    Loading
+    Loading,
+    GoogleAd,
   },
 
   async fetch () {
@@ -81,11 +84,13 @@ export default {
     padding: 2 * $base;
   }
 
-  &__line {
-    @include margin(top, 5);
+  &__ad {
+    @include margin(top, 8);
+    @include padding(top, 4);
+    @include padding(bottom, 4);
 
-    width: 100%;
-    border-bottom: 2px solid $gray-80;
+    border-top: 2px solid $black;
+    border-bottom: 2px solid $black;
   }
 
   &__grid {

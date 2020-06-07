@@ -1,4 +1,3 @@
-export const postAds = {
-  SIDE_AD: '1960897203',
-  POST_TEXT_AD: '9503081899',
-}
+export const POST_SIDE_AD = '1960897203'
+export const POST_AFTER_TEXT_AD = '9503081899'
+export const CATEGORY_MID_GRID_AD = '9442021072'
