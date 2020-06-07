@@ -1,63 +1,56 @@
 <template>
-  <div>
-    <section class="header">
-      <categories :categories="categories" />
-      <h1 class="page-title">
-        {{ slug }}
-      </h1>
-    </section>
-    <section class="category-container">
-      <div class="category-content">
-        <post-list
-          v-if="posts"
-          :posts="category_posts"
-          :title="slug"
-        />
-      </div>
-      <div class="sidebar" />
-    </section>
+  <div class="category">
+    <span class="category__title">
+      {{ category.name }}
+    </span>
+
+    <loading v-if="$fetchState.pending" />
+    <div v-else>
+      <post-grid class="category__grid" :posts="posts.data.slice(0, 6)" />
+      <div>part 2</div>
+      <post-grid class="category__grid" :posts="posts.data.slice(6, 13)" />
+    </div>
   </div>
 </template>
+
 <script>
-import { mapGetters } from 'vuex'
-import api from '../../../api/index'
-import postList from '../../../components/postList.vue'
-import categories from '../../../components/categories.vue'
+import { mapActions, mapGetters } from 'vuex'
+import PostGrid from '~/components/post-grid'
+import Loading from '~/components/loading'
 
 export default {
-  components: { postList, categories },
-  async asyncData ({ params }) {
-    // We can use async/await ES6 feature
-    const { posts } = await api.getCategory(params.slug)
-
-    return {
-      category_posts: posts,
-      slug: params.slug,
-    }
+  components: {
+    PostGrid,
+    Loading
   },
+
+  async fetch () {
+    await this.getPosts({ categories: this.category.id, per_page: 12 })
+  },
+
   data () {
     return {
       title: 'default',
     }
   },
+  
   computed: {
     ...mapGetters([
       'posts',
-      'category',
       'categories',
     ]),
+
+    category () {
+      return this.categories.find(c => c.slug === this.$route.params.slug)
+    },
   },
+  
   mounted () {
-    // this.$store.dispatch('getCategory', this.$route.params.slug)
-    console.log(this.categories)
-    if (this.categories.length === 0) {
-      this.$store.dispatch('getCategories')
-    }
-    this.$store.dispatch('getPosts')
   },
+  
   head () {
     return {
-      title: `Nuxt WordPress | ${this.slug}`,
+      title: `Cinematismo | ${this.category.name}`,
       meta: [
         {
           name: 'description',
@@ -66,74 +59,39 @@ export default {
       ],
     }
   },
+
+  methods: {
+    ...mapActions(['getPosts']),
+  }
 }
 </script>
 
-<style>
-/* layout */
+<style lang="scss" scoped>
+.category {
+  @include padding(left, 6);
+  @include padding(right, 6);
+  @include margin(top, 10);
+  @include margin(bottom, 10);
 
-.page-title {
-    text-align: center;
-    font-size:36px;
-    background-color:#1e5799;
-    background-image: linear-gradient(to right, #34495F, #3A5674);
-    text-align: center;
-    padding-top: 80px;
-    color:#fff;
-    padding-bottom:10px;
-}
+  &__title {
+    @extend %h2;
 
-.category-container {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-  margin: 0px auto;
-  line-height: 150%;
-  padding: 60px 30px 30px 30px;
-  max-width: 1000px;
-  margin: 0px auto;
-}
-
-.category-content {
-  flex: 1;
-}
-
-.content img {
-  max-width: 100%;
-  height: auto;
-  margin: 10px 0px;
-}
-
-.sidebar {
-  width: 180px;
-  padding: 0px 20px;
-}
-
-/* end layout */
-
-.links {
-  padding-top: 15px;
-}
-
-p {
-  margin-bottom: 10px;
-}
-
-/* Smartphones (portrait and landscape) ----------- */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
-
-  .title {
-    font-size: 22px;
-    line-height:44px;
+    background: $orange;
+    color: $white;
+    padding: 2 * $base;
   }
 
-  .sidebar {
-    display: none;
+  &__line {
+    @include margin(top, 5);
+
+    width: 100%;
+    border-bottom: 2px solid $gray-80;
   }
 
+  &__grid {
+    @include margin(top, 8);
+
+    width: 100%;
+  }
 }
 </style>
