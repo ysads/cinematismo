@@ -3,7 +3,7 @@
     <section class="container">
       <div>
         <div class="content">
-          <post-list
+          <post-grid
             v-if="posts"
             :posts="posts"
             title="Recent Posts"
@@ -18,11 +18,11 @@
 
 import { mapGetters } from 'vuex'
 import api from '@/api/index'
-import PostList from '@/components/postList.vue'
+import PostGrid from '@/components/post-grid'
 
 export default {
   components: {
-    PostList,
+    PostGrid,
   },
   async asyncData ({ params }) {
     // We can use async/await ES6 feature
