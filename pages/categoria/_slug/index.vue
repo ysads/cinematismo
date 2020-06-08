@@ -6,9 +6,24 @@
 
     <loading v-if="$fetchState.pending" />
     <div v-else>
-      <post-grid class="category__grid" :posts="posts.data.slice(0, 6)" />
-      <google-ad class="category__ad" :slot-id="CATEGORY_MID_GRID_AD" />
-      <post-grid class="category__grid" :posts="posts.data.slice(6, 13)" />
+      <post-grid
+        class="category__grid"
+        :posts="posts.data.slice(0, 6)"
+      />
+      <google-ad
+        class="category__ad"
+        :slot-id="CATEGORY_MID_GRID_AD"
+      />
+      <post-grid
+        class="category__grid"
+        :posts="posts.data.slice(6, 13)"
+      />
+      <paginator
+        class="category__pagination"
+        :current-page="currentPage"
+        :total-pages="posts.totalPages"
+        :base-url="paginateUrl"
+      />
     </div>
   </div>
 </template>
@@ -18,6 +33,7 @@ import { mapActions, mapGetters } from 'vuex'
 import PostGrid from '~/components/post-grid'
 import Loading from '~/components/loading'
 import GoogleAd from '~/components/google-ad'
+import Paginator from '~/components/paginator'
 import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 
 export default {
@@ -25,10 +41,18 @@ export default {
     PostGrid,
     Loading,
     GoogleAd,
+    Paginator,
   },
 
   async fetch () {
-    await this.getPosts({ categories: this.category.id, per_page: 12 })
+    console.log('query')
+    await this.getPosts({
+      categories: this.category.id,
+      per_page: 12,
+      page: this.currentPage
+
+    })
+    console.log("slot id", CATEGORY_MID_GRID_AD)
   },
 
   data () {
@@ -46,9 +70,14 @@ export default {
     category () {
       return this.categories.find(c => c.slug === this.$route.params.slug)
     },
-  },
-  
-  mounted () {
+
+    currentPage () {
+      return parseInt(this.$route.query.page) || 1
+    },
+
+    paginateUrl () {
+      return `/categoria/${this.$route.params.slug}`
+    },
   },
   
   head () {
@@ -65,7 +94,11 @@ export default {
 
   methods: {
     ...mapActions(['getPosts']),
-  }
+  },
+
+  watch: {
+    '$route.query': '$fetch'
+  },
 }
 </script>
 
@@ -97,6 +130,10 @@ export default {
     @include margin(top, 8);
 
     width: 100%;
+  }
+
+  &__pagination {
+    @include margin(top, 8);
   }
 }
 </style>

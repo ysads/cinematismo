@@ -59,8 +59,8 @@ export default {
 
         if (response.status === 200 && response.data.length > 0) {
           const filtered = {
-            total: response.headers['x-wp-total'],
-            totalPages: response.headers['x-wp-totalpages'],
+            total: parseInt(response.headers['x-wp-total']),
+            totalPages: parseInt(response.headers['x-wp-totalpages']),
             data: data.map(post => newPost(post)),
           }
           resolve(filtered)

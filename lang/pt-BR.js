@@ -8,6 +8,10 @@ export default {
         title: 'Matérias relacionadas',
       },
     },
+    paginator: {
+      prev: 'Anterior',
+      next: 'Próximo',
+    },
   },
   pages: {
     _slug: {
