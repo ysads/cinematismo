@@ -1,3 +1,10 @@
+.page-enter-active, .page-leave-active {
+  transition: opacity .3s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+}
+
 @mixin transition($prop, $duration: 0.3s, $fn: ease) {
   transition: $prop $duration $fn;
 }
