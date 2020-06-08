@@ -49,7 +49,7 @@ export default {
 
   &__info {
     margin: -$base * 10 $base * 5 $base * 5;
-    padding: $base * 3;
+    padding: $base * 6;
     position: relative;
     background: $white;
   }
