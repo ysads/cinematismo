@@ -77,6 +77,14 @@ $font-oswald: "Oswald", "Inter", Helvetica, Arial, sans-serif;
   line-height: 1.5rem;
 }
 
+%body-text2 {
+  @extend %inter;
+  @extend %regular;
+
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
 %caption {
   @extend %inter;
   @extend %regular;
@@ -84,6 +92,7 @@ $font-oswald: "Oswald", "Inter", Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1.5rem;
   text-transform: uppercase;
+  color: $gray-60;
 }
 
 %subtitle1 {

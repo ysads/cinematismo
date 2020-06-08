@@ -148,9 +148,7 @@ export default {
   &__caption {
     @extend %caption;
 
-    @include margin(top, 1)
-
-    color: $gray-60;
+    @include margin(top, 1);
   }
 
   &__body {
@@ -161,7 +159,7 @@ export default {
   }
 
   &__content {
-    @include margin(top, 1);
+    @include margin(top, 4);
   }
 
   &__recent-list {
