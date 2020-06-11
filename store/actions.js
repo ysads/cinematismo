@@ -74,9 +74,9 @@ export const getCategory = ({ commit, state }, slug) => {
   })
 }
 
-export const getCategories = ({ commit, state }, slug) => {
+export const getCategories = ({ commit, state }) => {
   return new Promise((resolve, reject) => {
-    api.getCategories(slug).then(
+    api.getCategories().then(
       response => {
         commit('CATEGORIES', response)
         resolve(response)

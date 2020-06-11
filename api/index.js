@@ -108,16 +108,12 @@ export default {
     })
   },
 
-  getCategories (slug) {
+  getCategories () {
     return new Promise((resolve, reject) => {
       request.defaults.baseURL = this.baseUrl
-      request.get('categories').then(response => {
-        const data = response.data.filter((c) => {
-          return c.name.toLowerCase() != 'uncategorized'
-        })
-
+      request.get('categories?hide_empty=true').then(response => {
         if (response.status === 200 && response.data.length > 0) {
-          resolve(data.map(category => newCategory(category)))
+          resolve(response.data.map(category => newCategory(category)))
         }
       })
     })
