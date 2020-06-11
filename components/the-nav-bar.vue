@@ -209,8 +209,12 @@ export default {
     }
 
     &__menu-item {
-      @include padding(left, 2);
-      @include padding(right, 2);
+      @include padding(left, 1);
+      @include padding(right, 1);
+    }
+
+    &__menu-item + &__menu-item {
+      margin-left: 0.3em;
     }
   }
 }
