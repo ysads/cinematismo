@@ -1,7 +1,7 @@
 <template>
-  <div class="post-grid">
+  <div class="grid-one">
     <thumb-grid
-      class="post-grid__item"
+      class="grid-one__item"
       v-for="post in posts"
       :key="post.id"
       :post="post"
@@ -9,12 +9,11 @@
   </div>
 </template>
 
-
 <script>
 import ThumbGrid from '~/components/thumbs/thumb-grid'
 
 export default {
-  name: 'PostGrid',
+  name: 'GridOne',
 
   props: {
     posts: {
@@ -30,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.post-grid {
+.grid-one {
   display: flex;
   flex-flow: row wrap;
 

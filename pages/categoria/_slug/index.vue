@@ -6,7 +6,7 @@
 
     <loading v-if="$fetchState.pending" />
     <div v-else>
-      <post-grid
+      <grid-one
         class="category__grid"
         :posts="posts.data.slice(0, 6)"
       />
@@ -14,7 +14,7 @@
         class="category__ad"
         :slot-id="CATEGORY_MID_GRID_AD"
       />
-      <post-grid
+      <grid-one
         class="category__grid"
         :posts="posts.data.slice(6, 13)"
       />
@@ -30,7 +30,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import PostGrid from '~/components/post-grid'
+import GridOne from '~/components/grids/grid-one'
 import Loading from '~/components/loading'
 import GoogleAd from '~/components/google-ad'
 import Paginator from '~/components/paginator'
@@ -38,7 +38,7 @@ import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 
 export default {
   components: {
-    PostGrid,
+    GridOne,
     Loading,
     GoogleAd,
     Paginator,
@@ -60,7 +60,7 @@ export default {
       title: 'default',
     }
   },
-  
+
   computed: {
     ...mapGetters([
       'posts',
@@ -79,7 +79,7 @@ export default {
       return `/categoria/${this.$route.params.slug}`
     },
   },
-  
+
   head () {
     return {
       title: `Cinematismo | ${this.category.name}`,

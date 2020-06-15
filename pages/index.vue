@@ -3,7 +3,7 @@
     <section class="container">
       <div>
         <div class="content">
-          <post-grid
+          <grid-one
             v-if="posts"
             :posts="posts"
             title="Recent Posts"
@@ -18,11 +18,11 @@
 
 import { mapGetters } from 'vuex'
 import api from '@/api/index'
-import PostGrid from '@/components/post-grid'
+import GridOne from '@/components/grids/grid-one'
 
 export default {
   components: {
-    PostGrid,
+    GridOne,
   },
   async asyncData ({ params }) {
     // We can use async/await ES6 feature
