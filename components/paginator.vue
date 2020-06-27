@@ -7,12 +7,12 @@
       }"
     >
       <nuxt-link :to="prevLink">
-        {{ $t(`${langPath}.prev`) }}
+        {{ $t('prev') }}
       </nuxt-link>
     </div>
 
     <div class="paginator__text ">
-      {{ `${currentPage} / ${totalPages}` }}
+      {{ $t('sequence', { curr: currentPage, total: totalPages}) }}
     </div>
 
     <div
@@ -21,7 +21,7 @@
         'invisible': !hasNext
       }">
       <nuxt-link :to="nextLink">
-        {{ $t(`${langPath}.next`) }}
+        {{ $t('next') }}
       </nuxt-link>
     </div>
   </div>
@@ -44,12 +44,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-
-  data () {
-    return {
-      langPath: __langpath,
-    }
   },
 
   computed: {
@@ -104,3 +98,13 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "pt-BR": {
+    "prev": "Anterior",
+    "next": "Próximo",
+    "sequence": "%{curr} • %{total}"
+  }
+}
+</i18n>

@@ -18,7 +18,7 @@
 
     <div class="post__author">
       {{
-        $t(`${langPath}.author`, { author: post.author.name, date: post.createdAt })
+        $t('author', { author: post.author.name, date: post.createdAt })
       }}
     </div>
 
@@ -76,7 +76,6 @@ export default {
   data () {
     return {
       post: null,
-      langPath: __langpath,
     }
   },
 
@@ -173,3 +172,11 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "pt-BR": {
+    "author": "Por %{author} • %{date}"
+  }
+}
+</i18n>

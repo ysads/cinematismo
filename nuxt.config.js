@@ -1,4 +1,3 @@
-import langPathPlugin from './webpack/lang-path-plugin.js'
 const path = require('path')
 
 module.exports = {
@@ -80,7 +79,10 @@ module.exports = {
   build: {
     extend (config, context) {
       config.resolve.alias['@'] = path.resolve(__dirname)
-      config.plugins.push(langPathPlugin)
+      config.module.rules.push({
+        resourceQuery: /blockType=i18n/,
+        loader: '@kazupon/vue-i18n-loader'
+      })
     },
   },
 }

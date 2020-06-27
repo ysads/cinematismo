@@ -1,7 +1,7 @@
 <template>
   <div class="recent-posts">
     <h4 class="recent-posts__title">
-      {{ $t(`${langPath}.title`) }}
+      {{ $t('title') }}
     </h4>
 
     <thumb-horizontal
@@ -45,12 +45,6 @@ export default {
     ...mapState(['recentPosts']),
   },
 
-  data () {
-    return {
-      langPath: __langpath,
-    }
-  },
-
   methods: {
     ...mapActions(['getRecentPosts']),
   },
@@ -73,3 +67,11 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "pt-BR": {
+    "title": "Matérias recentes"
+  }
+}
+</i18n>

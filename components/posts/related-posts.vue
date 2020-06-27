@@ -1,7 +1,7 @@
 <template>
   <div class="related-posts">
     <h4 class="related-posts__title">
-      {{ $t(`${langPath}.title`) }}
+      {{ $t('title') }}
     </h4>
 
     <hr width="25%">
@@ -43,12 +43,6 @@ export default {
     ...mapState(['relatedPosts']),
   },
 
-  data () {
-    return {
-      langPath: __langpath,
-    }
-  },
-
   methods: {
     ...mapActions(['getRelatedPosts']),
   },
@@ -82,3 +76,11 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "pt-BR": {
+    "title": "Matérias relacionadas"
+  }
+}
+</i18n>
