@@ -23,6 +23,17 @@ export default {
 .post-content {
   @extend %body-text2;
 
+  a {
+    color: $orange;
+
+    &:active,
+    &:hover {
+      color: $orange;
+      transition: all 0.5 ease;
+      text-decoration: underline;
+    }
+  }
+
   figure {
     width: 100% !important;
     height: auto;

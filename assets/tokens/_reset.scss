@@ -165,3 +165,8 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+
+*::selection {
+  background: $orange-70;
+  color: $white;
+}
