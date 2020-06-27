@@ -1,15 +1,10 @@
 <template>
   <div>
-    <section class="container">
-      <div>
-        <div class="content">
-          <grid-one
-            v-if="posts"
-            :posts="posts"
-            title="Recent Posts"
-          />
-        </div>
-      </div>
+    <section>
+      <grid-two
+        class="col-md-4 col-xs-12"
+        :posts="posts"
+      />
     </section>
   </div>
 </template>
@@ -19,17 +14,18 @@
 import { mapGetters } from 'vuex'
 import api from '@/api/index'
 import GridOne from '@/components/grids/grid-one'
+import GridTwo from '@/components/grids/grid-two'
 
 export default {
   components: {
     GridOne,
+    GridTwo,
   },
   async asyncData ({ params }) {
     // We can use async/await ES6 feature
     const { data } = await api.getPosts()
 
     return {
-      langPath: __langpath,
       posts: data,
     }
   },
@@ -48,7 +44,7 @@ export default {
   },
   head () {
     return {
-      title: 'Nuxt WordPress | Home',
+      title: 'Cinematismo | Notícias Cinematográficas',
       meta: [
         {
           name: 'description',
