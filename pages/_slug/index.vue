@@ -43,6 +43,11 @@
       />
     </div>
 
+    <google-ad
+      class="category__ad"
+      :slot-id="postAfterTextAd"
+    />
+
     <related-posts
       class="post__related-list"
       :tag-ids="post.tags"
@@ -52,14 +57,18 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { POST_AFTER_TEXT_AD } from '~/constants/ads'
 import axios from 'axios'
 import api from '~/api'
+import GoogleAd from '~/components/google-ad'
+import PostContent from '~/components/posts/post-content'
 import RecentPosts from '~/components/posts/recent-posts'
 import RelatedPosts from '~/components/posts/related-posts'
-import PostContent from '~/components/posts/post-content'
+
 
 export default {
   components: {
+    GoogleAd,
     PostContent,
     RecentPosts,
     RelatedPosts,
@@ -76,6 +85,7 @@ export default {
   data () {
     return {
       post: null,
+      postAfterTextAd: POST_AFTER_TEXT_AD,
     }
   },
 

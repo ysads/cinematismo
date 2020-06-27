@@ -12,7 +12,7 @@
       />
       <google-ad
         class="category__ad"
-        :slot-id="CATEGORY_MID_GRID_AD"
+        :slot-id="categoryMidGridAd"
       />
       <grid-one
         class="category__grid"
@@ -30,34 +30,32 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import GridOne from '~/components/grids/grid-one'
+import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 import Loading from '~/components/loading'
 import GoogleAd from '~/components/google-ad'
+import GridOne from '~/components/grids/grid-one'
 import Paginator from '~/components/paginator'
-import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 
 export default {
   components: {
-    GridOne,
     Loading,
+    GridOne,
     GoogleAd,
     Paginator,
   },
 
   async fetch () {
-    console.log('query')
     await this.getPosts({
       categories: this.category.id,
       per_page: 12,
       page: this.currentPage
-
     })
-    console.log("slot id", CATEGORY_MID_GRID_AD)
   },
 
   data () {
     return {
       title: 'default',
+      categoryMidGridAd: CATEGORY_MID_GRID_AD,
     }
   },
 

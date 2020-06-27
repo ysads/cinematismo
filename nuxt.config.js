@@ -1,7 +1,6 @@
 const path = require('path')
 
 module.exports = {
-
   /*
   ** Extend nuxt using nuxt modules system (Alpha)
   ** Learn more: https://github.com/nuxt/nuxt-modules
@@ -13,7 +12,8 @@ module.exports = {
     },
     ['@nuxtjs/google-adsense', {
       id: process.env.NUXT_ENV_ADSENSE_ID,
-      tag: 'ads-by-google'
+      tag: 'ads-by-google',
+      test: ['development', 'test'].includes(process.env.NODE_ENV)
     }],
   ],
 

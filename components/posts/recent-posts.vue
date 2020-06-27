@@ -11,22 +11,23 @@
       :post="post"
     />
 
-    <ads-by-google
-      ad-slot="1960897203"
-      ad-format="auto"
+    <google-ad
+      :slot-id="postSideAd"
     />
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import { postAds } from '~/constants/ads'
+import { POST_SIDE_AD } from '~/constants/ads'
+import GoogleAd from '~/components/google-ad'
 import ThumbHorizontal from '~/components/thumbs/thumb-horizontal'
 
 export default {
   name: 'RecentPosts',
 
   components: {
+    GoogleAd,
     ThumbHorizontal,
   },
 
@@ -35,6 +36,12 @@ export default {
       type: Array,
       default: [],
     },
+  },
+
+  data () {
+    return {
+      postSideAd: POST_SIDE_AD,
+    }
   },
 
   async fetch () {
