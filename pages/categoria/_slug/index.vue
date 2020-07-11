@@ -4,7 +4,10 @@
       {{ category.name }}
     </span>
 
-    <loading v-if="$fetchState.pending" />
+    <loading
+      v-if="$fetchState.pending"
+      class="category__loading"
+    />
     <div v-else>
       <grid-one
         class="category__grid"
@@ -106,6 +109,10 @@ export default {
   @include padding(right, 6);
   @include margin(top, 10);
   @include margin(bottom, 10);
+
+  &__loading {
+    height: calc(100vh - 160px);
+  }
 
   &__title {
     @extend %h2;
