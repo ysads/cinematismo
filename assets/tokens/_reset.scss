@@ -145,6 +145,14 @@ q::after {
   content: none;
 }
 
+input,
+button {
+  outline: 0;
+  border: 0;
+  background: none;
+  padding: 0;
+}
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
