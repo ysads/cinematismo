@@ -57,7 +57,7 @@ export default {
       request.get('posts?', { params: requestParams }).then(response => {
         const data = [...response.data]
 
-        if (response.status === 200 && response.data.length > 0) {
+        if (response.status === 200) {
           const filtered = {
             total: parseInt(response.headers['x-wp-total']),
             totalPages: parseInt(response.headers['x-wp-totalpages']),
