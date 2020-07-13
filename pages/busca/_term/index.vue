@@ -7,9 +7,9 @@
       <input
         class="search__input"
         v-model="searchTerm"
+        ref="searchInput"
       />
       <button class="search__button">
-        <img src="~/assets/images/arrow-forward.svg" />
       </button>
     </form>
 
@@ -57,6 +57,7 @@ import Loading from '~/components/loading'
 import GoogleAd from '~/components/google-ad'
 import GridOne from '~/components/grids/grid-one'
 import Paginator from '~/components/paginator'
+import { capitalize } from '~/support/string-tools'
 
 export default {
   components: {
@@ -78,9 +79,13 @@ export default {
     return {
       title: 'default',
       searchMidGridAd: CATEGORY_MID_GRID_AD,
-      searchTerm: this.$route.params.term,
+      searchTerm: capitalize(this.$route.params.term),
       loading: false,
     }
+  },
+
+  mounted () {
+    this.$refs.searchInput.focus()
   },
 
   computed: {
@@ -168,7 +173,7 @@ export default {
     width: $base * 12;
 
     &:active {
-      transform: scale(0.85);
+      @include scale-85;
     }
   }
 
