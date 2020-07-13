@@ -10,7 +10,7 @@
         <div class="thumb-grid__title">
           {{ post.title }}
         </div>
-        
+
         <div class="thumb-grid__lead">
           {{ post.excerpt }}
         </div>
@@ -52,6 +52,7 @@ export default {
     padding: $base * 6;
     position: relative;
     background: $white;
+    z-index: 1;
   }
 
   &__title {
