@@ -95,6 +95,8 @@ export default {
   }
 
   &__search {
+    @include transition(opacity, 0.8s);
+
     &-icon {
       fill: $gray-40;
       height: $base * 6;

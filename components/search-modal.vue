@@ -1,6 +1,9 @@
 <template>
   <div class="search-modal">
-    <div class="search-modal__overlay" />
+    <div
+      class="search-modal__overlay"
+      @click="$emit('close')"
+    />
     <form
       class="search-modal__form"
       @submit.prevent="searchPosts"
@@ -17,6 +20,7 @@
           class="search-modal__input"
           v-model="searchTerm"
           ref="searchInput"
+          @keyup.esc="$emit('close')"
         />
         <button>
           <icn-arrow-forward
@@ -68,6 +72,7 @@ export default {
 <style lang="scss" scoped>
 .search-modal {
   &__overlay {
+    cursor: pointer;
     position: fixed;
     top: 0;
     left: 0;
