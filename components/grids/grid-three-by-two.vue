@@ -1,7 +1,7 @@
 <template>
-  <div class="grid-one">
-    <thumb-grid
-      class="grid-one__item"
+  <div class="grid-three-by-two">
+    <thumb-through
+      class="grid-three-by-two__item"
       v-for="post in posts"
       :key="post.id"
       :post="post"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ThumbGrid from '~/components/thumbs/thumb-grid'
+import ThumbThrough from '~/components/thumbs/thumb-through'
 
 export default {
   name: 'GridOne',
@@ -23,13 +23,13 @@ export default {
   },
 
   components: {
-    ThumbGrid,
+    ThumbThrough,
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.grid-one {
+.grid-three-by-two {
   display: flex;
   flex-flow: row wrap;
 

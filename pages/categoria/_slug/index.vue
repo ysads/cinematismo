@@ -9,7 +9,7 @@
       class="category__loading"
     />
     <div v-else>
-      <grid-one
+      <grid-three-by-two
         class="category__grid"
         :posts="posts.data.slice(0, 6)"
       />
@@ -17,7 +17,7 @@
         class="category__ad"
         :slot-id="categoryMidGridAd"
       />
-      <grid-one
+      <grid-three-by-two
         class="category__grid"
         :posts="posts.data.slice(6, 13)"
       />
@@ -36,14 +36,14 @@ import { mapActions, mapGetters } from 'vuex'
 import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 import Loading from '~/components/loading'
 import GoogleAd from '~/components/google-ad'
-import GridOne from '~/components/grids/grid-one'
+import GridThreeByTwo from '~/components/grids/grid-three-by-two'
 import Paginator from '~/components/paginator'
 
 export default {
   components: {
     Loading,
-    GridOne,
     GoogleAd,
+    GridThreeByTwo,
     Paginator,
   },
 

@@ -20,7 +20,7 @@
 
     <div v-else>
       <div v-if="posts.data.length">
-        <grid-one
+        <grid-three-by-two
           class="search__grid"
           :posts="posts.data.slice(0, 6)"
         />
@@ -28,7 +28,7 @@
           class="search__ad"
           :slot-id="searchMidGridAd"
         />
-        <grid-one
+        <grid-three-by-two
           class="search__grid"
           :posts="posts.data.slice(6, 13)"
         />
@@ -55,15 +55,15 @@ import { mapActions, mapGetters } from 'vuex'
 import { CATEGORY_MID_GRID_AD } from '~/constants/ads'
 import Loading from '~/components/loading'
 import GoogleAd from '~/components/google-ad'
-import GridOne from '~/components/grids/grid-one'
+import GridThreeByTwo from '~/components/grids/grid-three-by-two'
 import Paginator from '~/components/paginator'
 import { capitalize } from '~/support/string-tools'
 
 export default {
   components: {
     Loading,
-    GridOne,
     GoogleAd,
+    GridThreeByTwo,
     Paginator,
   },
 

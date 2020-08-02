@@ -1,22 +1,24 @@
 <template>
-  <div class="thumb-grid">
-    <nuxt-link :to="`/${post.slug}`">
+  <div class="thumb-over-right">
+    <nuxt-link
+      class="thumb-over-right__container"
+      :to="`/${post.slug}`"
+    >
       <img
-        class="thumb-grid__thumb"
+        class="thumb-over-right__thumb"
         :src="post.featuredImage.sourceUrl"
       >
 
-      <div class="thumb-grid__info">
-        <div class="thumb-grid__title">
+      <div class="thumb-over-right__info">
+        <div class="thumb-over-right__title">
           {{ post.title }}
         </div>
 
-        <div class="thumb-grid__lead">
+        <div
+          v-if="withExcerpt"
+          class="thumb-over-right__lead"
+        >
           {{ post.excerpt }}
-        </div>
-
-        <div class="thumb-grid__date">
-          {{ post.createdAt }}
         </div>
       </div>
     </nuxt-link>
@@ -25,32 +27,44 @@
 
 <script>
 export default {
-  name: 'ThumbGrid',
+  name: 'ThumbOverLeft',
 
   props: {
     post: {
       type: Object,
       required: true,
     },
+
+    withExcerpt: {
+      type: Boolean,
+      default: false,
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.thumb-grid {
+.thumb-over-right {
+  &__container {
+    display: block;
+    position: relative;
+    height: 100%;
+  }
+
   &__thumb {
     width: 100%;
+    height: 100%;
     object-fit: cover;
-
-    @include breakpoint(md) {
-      height: 250px;
-    }
   }
 
   &__info {
-    margin: -$base * 10 $base * 5 $base * 5;
+    @include margin(left, 6);
+
     padding: $base * 6;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background: $white;
     z-index: 1;
   }
@@ -67,13 +81,6 @@ export default {
 
   &__lead {
     @include margin(top, 2);
-  }
-
-  &__date {
-    @include margin(top, 2);
-
-    color: $gray-60;
-    text-transform: uppercase;
   }
 }
 </style>
