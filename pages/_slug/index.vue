@@ -31,6 +31,11 @@
           {{ post.featuredImage.caption }}
         </div>
 
+        <share-post
+          class="post__share"
+          :post="post"
+        />
+
         <post-content
           class="post__content"
           :post="post"
@@ -64,7 +69,7 @@ import GoogleAd from '~/components/google-ad'
 import PostContent from '~/components/posts/post-content'
 import RecentPosts from '~/components/posts/recent-posts'
 import RelatedPosts from '~/components/posts/related-posts'
-
+import SharePost from '~/components/posts/share-post'
 
 export default {
   components: {
@@ -72,6 +77,7 @@ export default {
     PostContent,
     RecentPosts,
     RelatedPosts,
+    SharePost,
   },
 
   async asyncData ({ params, store }) {
@@ -126,8 +132,8 @@ export default {
     @extend %subtitle1;
 
     @include margin(right, 2);
-    padding: $base;
 
+    padding: $base;
     background: $orange;
     color: $white;
   }
@@ -141,6 +147,16 @@ export default {
   &__lead {
     @extend %h4;
     @include margin(top, 5);
+  }
+
+  &__share {
+    @include margin(top, 5);
+    @include margin(bottom, 5);
+    @include padding(top, 5);
+    @include padding(bottom, 5);
+
+    border-top: 1px solid $gray-20;
+    border-bottom: 1px solid $gray-20;
   }
 
   &__author {
