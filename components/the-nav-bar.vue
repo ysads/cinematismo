@@ -85,7 +85,7 @@ export default {
 
   &__hamburger {
     @include breakpoint(lg) {
-      display: none;
+      display: none !important;
     }
   }
 
