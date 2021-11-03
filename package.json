@@ -23,7 +23,7 @@
     "nuxt": "latest",
     "nuxt-modules": "latest",
     "nuxt-svg-loader": "^1.2.0",
-    "sanitize-html": "^1.23.0",
+    "sanitize-html": "^2.5.3",
     "vue-client-only": "^2.0.0",
     "vue-i18n": "^8.17.3"
   },
