@@ -19,7 +19,7 @@
     "axios": ">= 0.18.1",
     "entities": ">= 2.0.0",
     "hover.css": ">= 2.2.0",
-    "moment": "^2.25.3",
+    "moment": "^2.29.4",
     "nuxt": "latest",
     "nuxt-modules": "latest",
     "nuxt-svg-loader": "^1.2.0",
